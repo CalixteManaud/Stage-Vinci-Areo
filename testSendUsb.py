@@ -32,30 +32,59 @@ if dev.is_kernel_driver_active(interface) is True:
 text_present = "Bonjour, ce programme teste les afficheurs du FCU v0.1"
 text_info = "Pour vérifier un afficheur, si vous mettez 1 l'afficheur s'allume, en revanche si c'est 0, cela sera " \
             "éteint"
-text_info2 = "Tapez 2 pour voir les valeurs qui ne marchent pas pour en savoir plus ou 3 pour continuer"
 text3 = "Certaines valeurs ne marchent pas nous allons le régler dans la prochaine version"
 text_reponse = "Regarder votre FCU un bouton vient d'être allumé"
 
 print(text_present, end="")
 print(" ")
 print(text_info)
-print(text3)
-time.sleep(2.4)
 print(" ")
-print(text_info2)
+print(text3)
+print(" ")
 
-info = "313, 315, 316, 318, 319, 320, 321, 339"
 
-out = FCU.outputsOfCode(int(input('Entrer une valeur : ')))
-if out == 2:
-    print(info)
+info = [313, 315, 316, 317, 318, 319, 320, 321, 339]
 
-if out == 3:
-    pass
+def test(on):
+        code = 300
+        for i in range(39):
+                print("Code ", i)
+                validCode = True
+                for l in range (len(info)):
+                        if code == info[l]:
+                                validCode = False
+                                
+                if validCode == False:
+                        print("discard")
+                        code += 1
+                        continue   
+                
+                out = FCU.outputsOfCode(code)
+                code += 1
+
+                for j in range(len(out)):
+                        byte = 2 ** out[j][2]
+        
+                        if on == True:
+                                if out[j][1] == 0:
+                                        outs[out[j][0]][2] |= byte
+                                else:
+                                        outs[out[j][0]][3] |= byte
+                        else:
+                                byte = ~byte
+                                if out[j][1] == 0:
+                                        outs[out[j][0]][2] &= byte
+                                else:
+                                        outs[out[j][0]][3] &= byte
+
+                        dev.write(0x1, outs[out[j][0]])
+                time.sleep(0.7)
+                
+test(True)
+
 
 while True:
     try:
-
         arr = [0x47, 0x00, 0x00, 0x00]
         # dev.write(0x1, arr)
         # Inverse la valeur des bits envoyés
@@ -81,7 +110,7 @@ while True:
         digits = FCU.digitsOfCode(-6, 6789, digits)
 
         dev.write(0x1, str(bytearray(digits)))
-        out = FCU.outputsOfCode(int(input('Entrer une valeur : ')))
+        out = FCU.outputsOfCode(int(input('Entrer une valeur : '))) 
         val = int(input('Entre 1 ou 0: '))
 
         for i in range(len(out)):
@@ -99,12 +128,13 @@ while True:
                     outs[out[i][0]][3] &= byte
 
             dev.write(0x1, outs[out[i][0]])
+        
         data = dev.read(0x81, 64, 1)
         print(text_reponse)
-        # print(data)
 
     except usb.core.USBError as e:
         if e.args == ('Operation timed out',):
             pass
     except ValueError:
         print("Not a number")
+        
