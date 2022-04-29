@@ -45,6 +45,10 @@ print(" ")
 
 info = [313, 315, 316, 317, 318, 319, 320, 321, 339]
 
+digits = FCU.digitsOfCode(-2, 230, digits)
+#dev.write(0x1, str(bytearray(digits)))
+#time.sleep(2000)
+
 def test(on):
         code = 300
         for i in range(39):
@@ -81,6 +85,7 @@ def test(on):
                 time.sleep(0.7)
                 
 test(True)
+
 
 
 while True:
