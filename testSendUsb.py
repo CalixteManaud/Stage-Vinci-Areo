@@ -42,51 +42,48 @@ print(" ")
 print(text3)
 print(" ")
 
-
 info = [313, 315, 316, 317, 318, 319, 320, 321, 339]
 
 digits = FCU.digitsOfCode(-2, 230, digits)
-#dev.write(0x1, str(bytearray(digits)))
-#time.sleep(2000)
+
 
 def test(on):
-        code = 300
-        for i in range(39):
-                print("Code ", i)
-                validCode = True
-                for l in range (len(info)):
-                        if code == info[l]:
-                                validCode = False
-                                
-                if validCode == False:
-                        print("discard")
-                        code += 1
-                        continue   
-                
-                out = FCU.outputsOfCode(code)
-                code += 1
+    code = 300
+    for i in range(39):
+        print("Code ", i)
+        validCode = True
+        for l in range(len(info)):
+            if code == info[l]:
+                validCode = False
 
-                for j in range(len(out)):
-                        byte = 2 ** out[j][2]
-        
-                        if on == True:
-                                if out[j][1] == 0:
-                                        outs[out[j][0]][2] |= byte
-                                else:
-                                        outs[out[j][0]][3] |= byte
-                        else:
-                                byte = ~byte
-                                if out[j][1] == 0:
-                                        outs[out[j][0]][2] &= byte
-                                else:
-                                        outs[out[j][0]][3] &= byte
+        if not validCode:
+            print("discard")
+            code += 1
+            continue
 
-                        dev.write(0x1, outs[out[j][0]])
-                time.sleep(0.7)
-                
+        out = FCU.outputsOfCode(code)
+        code += 1
+
+        for j in range(len(out)):
+            byte = 2 ** out[j][2]
+
+            if on == True:
+                if out[j][1] == 0:
+                    outs[out[j][0]][2] |= byte
+                else:
+                    outs[out[j][0]][3] |= byte
+            else:
+                byte = ~byte
+                if out[j][1] == 0:
+                    outs[out[j][0]][2] &= byte
+                else:
+                    outs[out[j][0]][3] &= byte
+
+            dev.write(0x1, outs[out[j][0]])
+        time.sleep(0.7)
+
+
 test(True)
-
-
 
 while True:
     try:
@@ -115,7 +112,7 @@ while True:
         digits = FCU.digitsOfCode(-6, 6789, digits)
 
         dev.write(0x1, str(bytearray(digits)))
-        out = FCU.outputsOfCode(int(input('Entrer une valeur : '))) 
+        out = FCU.outputsOfCode(int(input('Entrer une valeur : ')))
         val = int(input('Entre 1 ou 0: '))
 
         for i in range(len(out)):
@@ -133,7 +130,7 @@ while True:
                     outs[out[i][0]][3] &= byte
 
             dev.write(0x1, outs[out[i][0]])
-        
+
         data = dev.read(0x81, 64, 1)
         print(text_reponse)
 
@@ -142,4 +139,3 @@ while True:
             pass
     except ValueError:
         print("Not a number")
-        
