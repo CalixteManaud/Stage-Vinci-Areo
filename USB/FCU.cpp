@@ -8,7 +8,7 @@
 
 #include <unistd.h>
 
-#include <libusb.h>
+#include <libusb/libusb.h>
 
 std::vector<std::vector<std::string>> outs;
 
