@@ -9,7 +9,7 @@ from math import log
 
 import FCU
 
-# Connexion spécifique du FCU
+# Connexion spï¿½cifique du FCU
 dev = usb.core.find(find_all=False, idVendor=0x04d8, idProduct=0x0050)
 
 interface = 0
@@ -30,10 +30,10 @@ if dev.is_kernel_driver_active(interface) is True:
     usb.util.claim_interface(dev, interface)
 
 text_present = "Bonjour, ce programme teste les afficheurs du FCU v0.1"
-text_info = "Pour vérifier un afficheur, si vous mettez 1 l'afficheur s'allume, en revanche si c'est 0, cela sera " \
-            "éteint"
-text3 = "Certaines valeurs ne marchent pas nous allons le régler dans la prochaine version"
-text_reponse = "Regarder votre FCU un bouton vient d'être allumé"
+text_info = "Pour vï¿½rifier un afficheur, si vous mettez 1 l'afficheur s'allume, en revanche si c'est 0, cela sera " \
+            "ï¿½teint"
+text3 = "Certaines valeurs ne marchent pas nous allons le rï¿½gler dans la prochaine version"
+text_reponse = "Regarder votre FCU un bouton vient d'ï¿½tre allumï¿½"
 
 print(text_present, end="")
 print(" ")
@@ -87,7 +87,7 @@ while True:
     try:
         arr = [0x47, 0x00, 0x00, 0x00]
         # dev.write(0x1, arr)
-        # Inverse la valeur des bits envoyés
+        # Inverse la valeur des bits envoyï¿½s
         arr = [0x43, 0x09, 0x00]
         dev.write(0x1, arr)
         # Eteins tous les digits 
