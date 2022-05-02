@@ -14,19 +14,11 @@ if dev.is_kernel_driver_active(interface) is True:
 if dev is None:
     raise ValueError('Device not found')
 
-dev.set_configuration()
-
-cfg = dev.get_active_configuration()
-intf = cfg[(0, 0)]
-
-ep = usb.util.find_descriptor(
-    intf,
-
-    custom_match= \
-    lambda e: \
-        usb.util.endpoint_direction(e.bEndpointintAddress) == \
-        usb.util.ENDPOINT_OUT)
-
-assert ep is not None
-
-ep.write('test')
+while True:
+    try:
+        data = dev.read(0x82, 8, 500)
+        print(data)
+    except usb.core.USBError as e:
+        data = None
+        if e.args == ('Operation timed out',):
+            continue

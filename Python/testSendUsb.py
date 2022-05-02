@@ -1,11 +1,8 @@
 #!/usr/bin/python
 # -*-coding:latin_1-*-
 
-import sys
-import usb.core
 import usb.util
 import time
-from math import log
 
 import FCU
 

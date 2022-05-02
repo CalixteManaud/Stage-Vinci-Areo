@@ -1,12 +1,8 @@
 #!/usr/bin/python
 # -*-coding:latin_1-*-
 
-import sys
-import usb.core
 import usb.util
 from math import log
-
-import MCDU_CPT
 
 # Connexion spécifique du MCDU
 dev = usb.core.find(find_all=False, idVendor=0x04d8, idProduct=0x0071)
