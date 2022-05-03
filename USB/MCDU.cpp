@@ -104,7 +104,7 @@ int main()
 
 			for(unsigned int l = 0; l < 4; l++)
 			{
-				libusb_transfer* transfer = libusb_alloc_transfer(0);
+				//libusb_transfer* transfer = libusb_alloc_transfer(0);
 
 				unsigned char data[512];
 				int len = 0;

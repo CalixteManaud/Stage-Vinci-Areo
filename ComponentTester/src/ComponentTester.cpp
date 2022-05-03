@@ -59,7 +59,7 @@ ComponentTester::ComponentTester() :
 {
 	m_window.setFramerateLimit(60);
 
-	m_components.push_back(new Component("default", sf::Vector2u(640, 480), &m_usb));
+	//m_components.push_back(new Component("default", sf::Vector2u(640, 480), &m_usb));
 	m_components.push_back(new Component("mcdu", sf::Vector2u(395, 640), &m_usb));
 }
 ComponentTester::~ComponentTester()

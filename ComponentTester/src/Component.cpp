@@ -112,7 +112,7 @@ void Component::update(const sf::RenderWindow& window, const sf::Event& event)
 
 			// -----
 			
-			if (m_dataRecieved)
+			if (false)
 			{
 				std::cout << "Input recieved : " << std::endl
 					<< "group = " << m_group << std::endl
@@ -298,7 +298,7 @@ void Component::update(const sf::RenderWindow& window, const sf::Event& event)
 						m_buttons[j].setSelected(false);
 
 					m_buttons[i].setSelected(true);
-					break; // Un seul bouton peut être sélectionné à la fois
+					break; // Un seul bouton peut ï¿½tre sï¿½lectionnï¿½ ï¿½ la fois
 				}
 			}
 
