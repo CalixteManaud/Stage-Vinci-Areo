@@ -38,6 +38,8 @@ void ComponentTester::update()
 
 		m_components[m_activeComponent]->update(m_window, m_event);
 	}
+
+	m_components[m_activeComponent]->updateHardware();
 }
 void ComponentTester::render()
 {

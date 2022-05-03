@@ -76,73 +76,6 @@ libusb_device* USB::getDevice(const std::string& idVendor, const std::string& id
 }
 void USB::readDevice(libusb_device* device, unsigned int* group, unsigned int* byte, bool* dataRecieved)
 {
-	
-	/*if (device)
-	{
-		unsigned char string[255];
-
-		libusb_device_handle* device_handle = NULL;
-
-		int error = libusb_open(device, &device_handle);
-
-		if (error < 0)
-			std::cout << libusb_strerror(error) << std::endl;
-
-		if (device_handle)
-		{
-			std::cout << "Device opened" << std::endl;
-
-			libusb_device_descriptor device_descriptor;
-			error = libusb_get_device_descriptor(device, &device_descriptor);
-
-
-			if (device_descriptor.iManufacturer) {
-				error = libusb_get_string_descriptor_ascii(device_handle, device_descriptor.iManufacturer, string, sizeof(string));
-				if (error > 0)
-					printf("  Manufacturer:              %s\n", (char*)string);
-			}
-
-			if (device_descriptor.iProduct) {
-				error = libusb_get_string_descriptor_ascii(device_handle, device_descriptor.iProduct, string, sizeof(string));
-				if (error > 0)
-					printf("  Product:                   %s\n", (char*)string);
-			}
-
-			if (device_descriptor.iSerialNumber) {
-				error = libusb_get_string_descriptor_ascii(device_handle, device_descriptor.iSerialNumber, string, sizeof(string));
-				if (error > 0)
-					printf("  Serial Number:             %s\n", (char*)string);
-			}
-
-			unsigned char data2[512];
-			int length = 0;
-
-			std::cout << "Clearing queue..." << std::endl;
-			do
-			{
-				if((error = libusb_interrupt_transfer(device_handle, 0x82, data2, sizeof(data2), &length, 1000)) < 0)
-					std::cout << "CAMARCHEPAS" << std::endl;
-			} while(length > 0);
-			std::cout << "Done" << std::endl;
-
-			for(unsigned int l = 0; l < 4; l++)
-			{
-				unsigned char data[512];
-				int len = 0;
-				if((error = libusb_interrupt_transfer(device_handle, 0x82, data, sizeof(data), &len, 0)) < 0)
-					std::cout << libusb_strerror(error) << std::endl;
-				//0x82 in
-				//0x01 out
-				std::cout << "Data recieved : " << std::endl;
-				for(unsigned int i = 0; i < len; i++)
-					std::cout << (int)data[i] << ' ';
-				std::cout << std::endl;
-			}
-		}
-	}
-
-	return;*/
-
 	if (!device)
 	{
 		std::cout << "No device provided" << std::endl;
@@ -170,62 +103,36 @@ void USB::readDevice(libusb_device* device, unsigned int* group, unsigned int* b
 	std::cout << "Clearing queue..." << std::endl;
 	do
 	{
-		error = libusb_interrupt_transfer(deviceHandle, 0x82, data, sizeof(data), &length, 1000);
-
-		if(error < 0)
+		if((error = libusb_interrupt_transfer(deviceHandle, 0x82, data, sizeof(data), &length, 1000)) < 0)
 			std::cout << libusb_strerror(error) << std::endl;
+			
 	} while (length > 0);
 	std::cout << "Done" << std::endl;
 
-	//for(unsigned int l = 0; l < 4; l++)
 	while(device)
-			{
-				//std::cout << "here : " << l << std::endl;
-				std::cout << "here" << std::endl;
-				unsigned char data2[512];
-				int len = 0;
-				if((error = libusb_interrupt_transfer(deviceHandle, 0x82, data2, sizeof(data2), &len, 0)) < 0)
-					std::cout << libusb_strerror(error) << std::endl;
-				//0x82 in
-				//0x01 out
-				//std::cout << "Data recieved : " << std::endl;
-				for(unsigned int i = 0; i < len; i++)
-				{
-					std::cout << "printing stuff" << std::endl;
-					std::cout << (int)data2[i] << ' ';
-				}
-				//std::cout << std::endl;
-			}
-
-	/*while (device)
 	{
-		//continue;
+		unsigned char data2[512];
+		int len = 0;
 
-		if ((error = libusb_interrupt_transfer(deviceHandle, 0x82, data, sizeof(data), &length, 0)) < 0)
+		while(*dataRecieved);
+
+		if((error = libusb_interrupt_transfer(deviceHandle, 0x82, data2, sizeof(data2), &len, 0)) < 0)
 			std::cout << libusb_strerror(error) << std::endl;
 
-		//0x82 in
-		//0x01 out
-
-		std::cout << "Data recieved : " << std::endl;
-		for(unsigned int i = 0; i < length; i++)
-			std::cout << (int)data[i] << ' ';
+		for(unsigned int i = 0; i < len; i++)
+			std::cout << (int)data2[i] << ' ';
 		std::cout << std::endl;
 
-		*group = std::bitset<32>((data[1] & ~(1 << 6)) >> 1).to_ulong();
+		unsigned int groupe = std::bitset<32>((data2[1] & ~(1 << 6)) >> 1).to_ulong();
 
-		int tbyte = ~(data[2]) & 255;
-		tbyte = (tbyte & -tbyte);
-		if (tbyte != 0)
-			tbyte = (int)log2((tbyte & -tbyte)) + 1;
+		unsigned int byte1 = ~(data2[2]) & 255;
+		byte1 = (byte1 & -byte1);
+		if (byte1 != 0)
+			byte1 = log2((byte1 & -byte1)) + 1;
 
-		*byte = tbyte;
-
-		*byte = ~(data[2]) & 255;
-		*byte = (*byte & -(*byte));
-		if (*byte != 0)
-			*byte = log2((*byte & -(*byte))) + 1;
+		*group = groupe;
+		*byte = byte1;
 
 		*dataRecieved = true;
-	}*/
+	}
 }

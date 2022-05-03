@@ -39,6 +39,7 @@ public:
 	std::string getName() const;
 	sf::Vector2u getSize() const;
 
+	void updateHardware();
 	void update(const sf::RenderWindow& window, const sf::Event& event);
 	void render(sf::RenderWindow& window) const;
 };
