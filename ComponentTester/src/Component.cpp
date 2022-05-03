@@ -102,7 +102,7 @@ void Component::updateHardware()
 			case 0:
 				switch (m_byte)
 				{
-				case 1: value = "unknown"; break;
+				case 1: value = "."; break;
 				case 2: value = "0"; break;
 				case 3: value = "+/-"; break;
 				case 4: value = "z"; break;
@@ -187,7 +187,7 @@ void Component::updateHardware()
 				switch (m_byte)
 				{
 				case 1: value = "airport"; break;
-				case 2: value = "unknown"; break;
+				case 2: value = "blank2"; break;
 				case 3: value = "lsk4"; break;
 				case 4: value = "atccomm"; break;
 				case 5: value = "mcdumenu"; break;
@@ -204,7 +204,7 @@ void Component::updateHardware()
 				case 2: value = "f-pln"; break;
 				case 3: value = "lsk3"; break;
 				case 4: value = "data"; break;
-				case 5: value = "unknown"; break;
+				case 5: value = "blank1"; break;
 				case 6: value = "rsk1"; break;
 				case 7: value = "rsk3"; break;
 				case 8: value = "rsk5"; break;
@@ -225,14 +225,22 @@ void Component::updateHardware()
 				default: value = "unknown"; break;
 				}
 				break;
+			case 9:
+				switch(m_byte)
+				{
+					case 1: value = "dim"; break;
+					case 2: value = "brt"; break;
+					default: value = "unknown"; break;
+				}
+				break;
 			default:
 				value = "unknown";
 				break;
 			}
 
 			//std::cout << "Input recieved : g = " << m_group << " b = " << m_byte << std::endl;
-			if(value != "unknown")
-				std::cout << "value = " << value << std::endl;
+			//if(value != "unknown")
+			//	std::cout << "value = " << value << std::endl;
 
 			for (unsigned int i = 0; i < m_buttons.size(); ++i)
 			{
@@ -240,6 +248,10 @@ void Component::updateHardware()
 				{
 					m_buttons[i].setColor(sf::Color(180, 25, 15, 128));
 					std::cout << "Button " << m_buttons[i].getValue() << " pressed" << std::endl;
+				}
+				else
+				{
+					m_buttons[i].setColor(sf::Color::Transparent);
 				}
 			}
 		}

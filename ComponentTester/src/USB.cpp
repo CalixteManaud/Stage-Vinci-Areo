@@ -119,9 +119,9 @@ void USB::readDevice(libusb_device* device, unsigned int* group, unsigned int* b
 		if((error = libusb_interrupt_transfer(deviceHandle, 0x82, data2, sizeof(data2), &len, 0)) < 0)
 			std::cout << libusb_strerror(error) << std::endl;
 
-		for(unsigned int i = 0; i < len; i++)
+		/*for(unsigned int i = 0; i < len; i++)
 			std::cout << (int)data2[i] << ' ';
-		std::cout << std::endl;
+		std::cout << std::endl;*/
 
 		unsigned int groupe = std::bitset<32>((data2[1] & ~(1 << 6)) >> 1).to_ulong();
 
