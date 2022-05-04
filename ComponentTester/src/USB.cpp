@@ -2,7 +2,8 @@
 
 USB::USB() :
 	m_devices(NULL),
-	m_deviceCount(0)
+	m_deviceCount(0),
+	m_deviceHandle(NULL)
 {
 	int error = libusb_init(NULL);
 
@@ -40,8 +41,17 @@ USB::USB() :
 }
 USB::~USB()
 {
+	if(m_deviceHandle)
+		libusb_close(m_deviceHandle);
+		
 	libusb_free_device_list(m_devices, 1);
 	libusb_exit(NULL);
+}
+
+void USB::close()
+{
+	libusb_close(m_deviceHandle);
+	m_deviceHandle = NULL;
 }
 
 libusb_device* USB::getDevice(const std::string& idVendor, const std::string& idProduct)
@@ -74,7 +84,7 @@ libusb_device* USB::getDevice(const std::string& idVendor, const std::string& id
 
 	return device;
 }
-void USB::readDevice(libusb_device* device, unsigned int* group, unsigned int* byte, bool* dataRecieved)
+void USB::readDevice(libusb_device* device, unsigned int* group, unsigned int* byte, bool* reading, bool* dataRecieved)
 {
 	if (!device)
 	{
@@ -82,13 +92,13 @@ void USB::readDevice(libusb_device* device, unsigned int* group, unsigned int* b
 		return;
 	}
 
-	libusb_device_handle* deviceHandle = NULL;
-	int error = libusb_open(device, &deviceHandle);
+	m_deviceHandle = NULL;
+	int error = libusb_open(device, &m_deviceHandle);
 
 	if (error < 0)
 		std::cout << libusb_strerror(error) << std::endl;
 
-	if (!deviceHandle)
+	if (!m_deviceHandle)
 	{
 		std::cout << "Failed to open device" << std::endl;
 		return;
@@ -103,29 +113,29 @@ void USB::readDevice(libusb_device* device, unsigned int* group, unsigned int* b
 	std::cout << "Clearing queue..." << std::endl;
 	do
 	{
-		if((error = libusb_interrupt_transfer(deviceHandle, 0x82, data, sizeof(data), &length, 1000)) < 0)
+		if((error = libusb_interrupt_transfer(m_deviceHandle, 0x82, data, sizeof(data), &length, 1000)) < 0)
 			std::cout << libusb_strerror(error) << std::endl;
 			
 	} while (length > 0);
 	std::cout << "Done" << std::endl;
 
-	while(device)
+	while(*reading)
 	{
-		unsigned char data2[512];
-		int len = 0;
+		//unsigned char data[512];
+		//int len = 0;
 
 		while(*dataRecieved);
 
-		if((error = libusb_interrupt_transfer(deviceHandle, 0x82, data2, sizeof(data2), &len, 0)) < 0)
+		if((error = libusb_interrupt_transfer(m_deviceHandle, 0x82, data, sizeof(data), &length, 0)) < 0)
 			std::cout << libusb_strerror(error) << std::endl;
 
-		/*for(unsigned int i = 0; i < len; i++)
-			std::cout << (int)data2[i] << ' ';
-		std::cout << std::endl;*/
+		//for(unsigned int i = 0; i < length; i++)
+		//	std::cout << (int)data[i] << ' ';
+		//std::cout << std::endl;
 
-		unsigned int groupe = std::bitset<32>((data2[1] & ~(1 << 6)) >> 1).to_ulong();
+		unsigned int groupe = std::bitset<32>((data[1] & ~(1 << 6)) >> 1).to_ulong();
 
-		unsigned int byte1 = ~(data2[2]) & 255;
+		unsigned int byte1 = ~(data[2]) & 255;
 		byte1 = (byte1 & -byte1);
 		if (byte1 != 0)
 			byte1 = log2((byte1 & -byte1)) + 1;
@@ -135,4 +145,8 @@ void USB::readDevice(libusb_device* device, unsigned int* group, unsigned int* b
 
 		*dataRecieved = true;
 	}
+
+	//libusb_close(m_deviceHandle);
+
+	std::cout << "----- Component closed -----" << std::endl;
 }

@@ -57,7 +57,7 @@ void Component::saveButtons()
 	file.close();
 }
 
-Component::Component(const std::string& name, const sf::Vector2u size, USB* usb) :
+Component::Component(const std::string& name, const sf::Vector2u size, const std::string& idVendor, const std::string& idProduct) :
 	m_name(name),
 	m_size(size),
 	m_texture(),
@@ -65,19 +65,27 @@ Component::Component(const std::string& name, const sf::Vector2u size, USB* usb)
 	m_font(),
 	m_buttons(),
 	m_editMode(false),
-	m_thread(&USB::readDevice, usb, usb->getDevice("4d8", "71"), &m_group, &m_byte, &m_dataRecieved)
+	m_reading(false),
+	m_idVendor(idVendor),
+	m_idProduct(idProduct),
+	m_thread()
 {
 	m_texture.loadFromFile("res/textures/" + m_name + ".png");
 	m_sprite.setTexture(m_texture);
 
 	m_font.loadFromFile("res/fonts/arial.ttf");
-	loadButtons();
 
-	m_thread.detach();
+	if(m_name != "default")
+		loadButtons();
+
+	//m_thread.detach();
 }
 Component::~Component()
 {
-	saveButtons();
+	m_reading = false;
+
+	if(m_name != "default")
+		saveButtons();
 }
 
 std::string Component::getName() const
@@ -87,6 +95,22 @@ std::string Component::getName() const
 sf::Vector2u Component::getSize() const
 {
 	return m_size;
+}
+
+void Component::start(USB* usb)
+{
+	m_reading = true;
+
+	//m_thread = new std::thread(&USB::readDevice, usb, usb->getDevice(m_idVendor, m_idProduct), &m_group, &m_byte, &m_reading, &m_dataRecieved);
+	//m_thread->detach();
+
+	m_thread = std::thread(&USB::readDevice, usb, usb->getDevice(m_idVendor, m_idProduct), &m_group, &m_byte, &m_reading, &m_dataRecieved);
+	m_thread.detach();
+}
+void Component::stop(USB* usb)
+{
+	m_reading = false;
+	usb->close();
 }
 
 void Component::updateHardware()
@@ -237,6 +261,8 @@ void Component::updateHardware()
 				value = "unknown";
 				break;
 			}
+
+			// Différence secf-pln et fuelpred selon le mcdu
 
 			//std::cout << "Input recieved : g = " << m_group << " b = " << m_byte << std::endl;
 			//if(value != "unknown")

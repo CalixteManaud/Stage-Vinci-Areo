@@ -22,6 +22,9 @@ private:
 	sf::Font m_font;
 	std::vector<Button> m_buttons;
 
+	std::string m_idVendor;
+	std::string m_idProduct;
+
 	std::thread m_thread;
 	unsigned int m_group;
 	unsigned int m_byte;
@@ -29,15 +32,20 @@ private:
 
 	bool m_editMode;
 
+	bool m_reading;
+
 	void loadButtons();
 	void saveButtons();
 
 public:
-	Component(const std::string& name, const sf::Vector2u size, USB* usb);
+	Component(const std::string& name, const sf::Vector2u size, const std::string& idVendor, const std::string& idProduct);
 	~Component();
 
 	std::string getName() const;
 	sf::Vector2u getSize() const;
+
+	void start(USB* usb);
+	void stop(USB* usb);
 
 	void updateHardware();
 	void update(const sf::RenderWindow& window, const sf::Event& event);

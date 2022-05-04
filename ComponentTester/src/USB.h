@@ -13,11 +13,14 @@ class USB
 private:
 	libusb_device** m_devices;
 	unsigned int m_deviceCount;
+	libusb_device_handle* m_deviceHandle;
 
 public:
 	USB();
 	~USB();
 
+	void close();
+
 	libusb_device* getDevice(const std::string& idVendor, const std::string& idProduct);
-	void readDevice(libusb_device* device, unsigned int* group, unsigned int* byte, bool* dataRecieved);
+	void readDevice(libusb_device* device, unsigned int* group, unsigned int* byte, bool* reading, bool* dataRecieved);
 };

@@ -28,9 +28,14 @@ void ComponentTester::update()
 
 			if (newActiveComponent != m_activeComponent && newActiveComponent < m_components.size())
 			{
+				m_components[m_activeComponent]->stop(&m_usb);
+
 				m_activeComponent = newActiveComponent;
 				m_window.setSize(m_components[m_activeComponent]->getSize());
 				m_window.setView(sf::View(sf::FloatRect(sf::Vector2f(0.0f, 0.0f), static_cast<sf::Vector2f>(m_components[m_activeComponent]->getSize()))));
+
+				if(m_activeComponent != 0)
+					m_components[m_activeComponent]->start(&m_usb);
 
 				std::cout << m_components[m_activeComponent]->getName() << " component selected" << std::endl;
 			}
@@ -61,8 +66,8 @@ ComponentTester::ComponentTester() :
 {
 	m_window.setFramerateLimit(60);
 
-	//m_components.push_back(new Component("default", sf::Vector2u(640, 480), &m_usb));
-	m_components.push_back(new Component("mcdu", sf::Vector2u(395, 640), &m_usb));
+	m_components.push_back(new Component("default", sf::Vector2u(640, 480), "", ""));
+	m_components.push_back(new Component("mcdu", sf::Vector2u(395, 640), "4d8", "71"));
 }
 ComponentTester::~ComponentTester()
 {
