@@ -6,7 +6,8 @@ void Component::loadButtons()
 
 	if (!file.is_open())
 	{
-		std::cout << "Failed to load component at res/components/" << m_name << ".txt" << std::endl;
+		if(m_debugInfo)
+			std::cout << "Failed to load component at res/components/" << m_name << ".txt" << std::endl;
 		return;
 	}
 
@@ -40,7 +41,8 @@ void Component::saveButtons()
 
 	if (!file.is_open())
 	{
-		std::cout << "Failed to save component at res/components/" << m_name << ".txt" << std::endl;
+		if(m_debugInfo)
+			std::cout << "Failed to save component at res/components/" << m_name << ".txt" << std::endl;
 		return;
 	}
 
@@ -57,7 +59,7 @@ void Component::saveButtons()
 	file.close();
 }
 
-Component::Component(const std::string& name, const sf::Vector2u size, const std::string& idVendor, const std::string& idProduct) :
+Component::Component(const std::string& name, const sf::Vector2u size, const std::string& idVendor, const std::string& idProduct, bool debugInfo) :
 	m_name(name),
 	m_size(size),
 	m_texture(),
@@ -68,7 +70,8 @@ Component::Component(const std::string& name, const sf::Vector2u size, const std
 	m_reading(false),
 	m_idVendor(idVendor),
 	m_idProduct(idProduct),
-	m_thread()
+	m_thread(),
+	m_debugInfo(debugInfo)
 {
 	m_texture.loadFromFile("res/textures/" + m_name + ".png");
 	m_sprite.setTexture(m_texture);
@@ -100,10 +103,7 @@ sf::Vector2u Component::getSize() const
 void Component::start(USB* usb)
 {
 	m_reading = true;
-
-	//m_thread = new std::thread(&USB::readDevice, usb, usb->getDevice(m_idVendor, m_idProduct), &m_group, &m_byte, &m_reading, &m_dataRecieved);
-	//m_thread->detach();
-
+	m_dataRecieved = false;
 	m_thread = std::thread(&USB::readDevice, usb, usb->getDevice(m_idVendor, m_idProduct), &m_group, &m_byte, &m_reading, &m_dataRecieved);
 	m_thread.detach();
 }
@@ -264,16 +264,13 @@ void Component::updateHardware()
 
 			// Différence secf-pln et fuelpred selon le mcdu
 
-			//std::cout << "Input recieved : g = " << m_group << " b = " << m_byte << std::endl;
-			//if(value != "unknown")
-			//	std::cout << "value = " << value << std::endl;
-
 			for (unsigned int i = 0; i < m_buttons.size(); ++i)
 			{
 				if (m_buttons[i].getValue() == value)
 				{
 					m_buttons[i].setColor(sf::Color(180, 25, 15, 128));
-					std::cout << "Button " << m_buttons[i].getValue() << " pressed" << std::endl;
+					if(m_debugInfo)
+						std::cout << "Button " << m_buttons[i].getValue() << " pressed" << std::endl;
 				}
 				else
 				{
@@ -299,7 +296,8 @@ void Component::update(const sf::RenderWindow& window, const sf::Event& event)
 			if (m_buttons[i].isPressed(window, event))
 			{
 				m_buttons[i].setColor(sf::Color(180, 25, 15, 128));
-				std::cout << "Button " << m_buttons[i].getValue() << " pressed" << std::endl;
+				if(m_debugInfo)
+					std::cout << "Button " << m_buttons[i].getValue() << " pressed" << std::endl;
 			}
 			else
 			{

@@ -1,13 +1,17 @@
 #include "USB.h"
 
-USB::USB() :
+USB::USB(bool debugInfo) :
 	m_devices(NULL),
 	m_deviceCount(0),
-	m_deviceHandle(NULL)
+	m_deviceHandle(NULL),
+	m_debugInfo(debugInfo)
 {
+	if(m_debugInfo)
+		std::cout << "Detecting devices..." << std::endl;
+
 	int error = libusb_init(NULL);
 
-	if (error != 0)
+	if (m_debugInfo && error != 0)
 		std::cout << libusb_strerror(error) << std::endl;
 
 	int deviceCount = libusb_get_device_list(NULL, &m_devices);
@@ -17,27 +21,28 @@ USB::USB() :
 
 	m_deviceCount = (unsigned int)deviceCount;
 
-	std::cout << m_deviceCount << " devices found" << std::endl;
-
-	/*for (unsigned int i = 0; i < (unsigned int)m_deviceCount; i++)
+	if(m_debugInfo)
 	{
-		libusb_device_descriptor device_descriptor;
-		error = libusb_get_device_descriptor(m_devices[i], &device_descriptor);
+		std::cout << m_deviceCount << (m_deviceCount > 1 ? " devices" : " device") << " detected" << std::endl;
 
-		if (error != 0)
-			std::cout << libusb_strerror(error) << std::endl;
+		for (unsigned int i = 0; i < (unsigned int)m_deviceCount; i++)
+		{
+			libusb_device_descriptor device_descriptor;
+			error = libusb_get_device_descriptor(m_devices[i], &device_descriptor);
 
-		std::ostringstream osstr;
-		osstr << std::hex << device_descriptor.idVendor;
-		std::string hexVendor = osstr.str();
-		osstr.str("");
-		osstr << std::hex << device_descriptor.idProduct;
-		std::string hexProduct = osstr.str();
+			if (error != 0)
+				std::cout << libusb_strerror(error) << std::endl;
 
-		std::cout << "Device" << std::endl;
-		std::cout << "idVendorStr = " << hexVendor << std::endl;
-		std::cout << "idProductStr = " << hexProduct << std::endl;
-	}*/
+			std::ostringstream osstr;
+			osstr << std::hex << device_descriptor.idVendor;
+			std::string hexVendor = osstr.str();
+			osstr.str("");
+			osstr << std::hex << device_descriptor.idProduct;
+			std::string hexProduct = osstr.str();
+
+			std::cout << "Device " << i+1 << ": " << hexVendor << ":" << hexProduct << std::endl;
+		}
+	}
 }
 USB::~USB()
 {
@@ -64,7 +69,7 @@ libusb_device* USB::getDevice(const std::string& idVendor, const std::string& id
 		libusb_device_descriptor device_descriptor;
 		error = libusb_get_device_descriptor(m_devices[i], &device_descriptor);
 
-		if (error != 0)
+		if (m_debugInfo && error != 0)
 			std::cout << libusb_strerror(error) << std::endl;
 
 		std::ostringstream osstr;
@@ -74,7 +79,6 @@ libusb_device* USB::getDevice(const std::string& idVendor, const std::string& id
 		osstr << std::hex << device_descriptor.idProduct;
 		std::string hexProduct = osstr.str();
 
-		//if (hexVendor == "4d8" && hexProduct == "71")
 		if (hexVendor == idVendor && hexProduct == idProduct)
 		{
 			device = m_devices[i];
@@ -88,17 +92,18 @@ void USB::readDevice(libusb_device* device, unsigned int* group, unsigned int* b
 {
 	if (!device)
 	{
-		std::cout << "No device provided" << std::endl;
+		if(m_debugInfo)
+			std::cout << "No device provided for this component" << std::endl;
 		return;
 	}
 
 	m_deviceHandle = NULL;
 	int error = libusb_open(device, &m_deviceHandle);
 
-	if (error < 0)
+	if (m_debugInfo && error < 0)
 		std::cout << libusb_strerror(error) << std::endl;
 
-	if (!m_deviceHandle)
+	if (m_debugInfo && !m_deviceHandle)
 	{
 		std::cout << "Failed to open device" << std::endl;
 		return;
@@ -110,28 +115,27 @@ void USB::readDevice(libusb_device* device, unsigned int* group, unsigned int* b
 	unsigned char data[512];
 	int length = 0;
 
-	std::cout << "Clearing queue..." << std::endl;
+	if(m_debugInfo)
+		std::cout << "Clearing queue..." << std::endl;
 	do
 	{
-		if((error = libusb_interrupt_transfer(m_deviceHandle, 0x82, data, sizeof(data), &length, 1000)) < 0)
-			std::cout << libusb_strerror(error) << std::endl;
+		error = libusb_interrupt_transfer(m_deviceHandle, 0x82, data, sizeof(data), &length, 1000);
+
+		//if(m_debugInfo && error < 0)
+		//	std::cout << libusb_strerror(error) << std::endl;
 			
 	} while (length > 0);
-	std::cout << "Done" << std::endl;
+	if(m_debugInfo)
+		std::cout << "Done" << std::endl;
 
 	while(*reading)
 	{
-		//unsigned char data[512];
-		//int len = 0;
-
 		while(*dataRecieved);
 
-		if((error = libusb_interrupt_transfer(m_deviceHandle, 0x82, data, sizeof(data), &length, 0)) < 0)
-			std::cout << libusb_strerror(error) << std::endl;
+		error = libusb_interrupt_transfer(m_deviceHandle, 0x82, data, sizeof(data), &length, 0);
 
-		//for(unsigned int i = 0; i < length; i++)
-		//	std::cout << (int)data[i] << ' ';
-		//std::cout << std::endl;
+		if(m_debugInfo && error < 0 && error != LIBUSB_ERROR_NO_DEVICE)
+			std::cout << libusb_strerror(error) << std::endl;
 
 		unsigned int groupe = std::bitset<32>((data[1] & ~(1 << 6)) >> 1).to_ulong();
 
@@ -145,8 +149,4 @@ void USB::readDevice(libusb_device* device, unsigned int* group, unsigned int* b
 
 		*dataRecieved = true;
 	}
-
-	//libusb_close(m_deviceHandle);
-
-	std::cout << "----- Component closed -----" << std::endl;
 }

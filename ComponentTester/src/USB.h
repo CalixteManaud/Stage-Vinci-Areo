@@ -15,8 +15,10 @@ private:
 	unsigned int m_deviceCount;
 	libusb_device_handle* m_deviceHandle;
 
+	bool m_debugInfo;
+
 public:
-	USB();
+	USB(bool debugInfo);
 	~USB();
 
 	void close();

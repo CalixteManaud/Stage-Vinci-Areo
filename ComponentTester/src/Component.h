@@ -34,11 +34,13 @@ private:
 
 	bool m_reading;
 
+	bool m_debugInfo;
+
 	void loadButtons();
 	void saveButtons();
 
 public:
-	Component(const std::string& name, const sf::Vector2u size, const std::string& idVendor, const std::string& idProduct);
+	Component(const std::string& name, const sf::Vector2u size, const std::string& idVendor, const std::string& idProduct, bool debugInfo);
 	~Component();
 
 	std::string getName() const;

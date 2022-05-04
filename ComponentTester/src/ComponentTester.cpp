@@ -37,7 +37,8 @@ void ComponentTester::update()
 				if(m_activeComponent != 0)
 					m_components[m_activeComponent]->start(&m_usb);
 
-				std::cout << m_components[m_activeComponent]->getName() << " component selected" << std::endl;
+				if(m_debugInfo)
+					std::cout << m_components[m_activeComponent]->getName() << " component selected" << std::endl;
 			}
 		}
 
@@ -55,19 +56,20 @@ void ComponentTester::render()
 	m_window.display();
 }
 
-ComponentTester::ComponentTester() :
+ComponentTester::ComponentTester(bool debugInfo) :
 	m_window(sf::VideoMode(640, 480), "ComponentTester", sf::Style::Close),
 	m_event(),
 	m_clock(),
 	m_deltaTime(0.0f),
-	m_usb(),
+	m_usb(debugInfo),
 	m_components(),
-	m_activeComponent(0)
+	m_activeComponent(0),
+	m_debugInfo(debugInfo)
 {
 	m_window.setFramerateLimit(60);
 
-	m_components.push_back(new Component("default", sf::Vector2u(640, 480), "", ""));
-	m_components.push_back(new Component("mcdu", sf::Vector2u(395, 640), "4d8", "71"));
+	m_components.push_back(new Component("default", sf::Vector2u(640, 480), "", "", debugInfo));
+	m_components.push_back(new Component("mcdu", sf::Vector2u(395, 640), "4d8", "71", debugInfo));
 }
 ComponentTester::~ComponentTester()
 {

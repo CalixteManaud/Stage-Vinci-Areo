@@ -17,11 +17,13 @@ private:
 	std::vector<Component*> m_components;
 	unsigned int m_activeComponent;
 
+	bool m_debugInfo;
+
 	void update();
 	void render();
 
 public:
-	ComponentTester();
+	ComponentTester(bool debugInfo);
 	~ComponentTester();
 
 	void run();
