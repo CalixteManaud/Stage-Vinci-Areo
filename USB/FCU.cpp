@@ -10,7 +10,7 @@
 
 #include <libusb/libusb.h>
 
-std::vector<std::vector<std::string>> outs;
+std::vector<std::vector<unsigned int>> outs;
 
 std::vector<std::vector<unsigned int>> outputs;
 std::vector<std::vector<unsigned int>> outputs2;
@@ -66,12 +66,16 @@ void output_sequence(bool on, bool all, libusb_device_handle* device_handle)
 			for (unsigned j = 0; j < out.size(); j++)
 			{
 				byte = std::pow(out[j][2], 2);
-				
 
 				if (on)
 				{
 					if (out[j][1] == 0)
+					{
 						outs[out[j][0]][2] |= byte;
+
+						//unsigned int val = std::stoul(outs[out[j][0]][2]);
+						//val |= byte;
+					}	
 					else
 						outs[out[j][0]][3] |= byte;
 				}
@@ -90,12 +94,18 @@ void output_sequence(bool on, bool all, libusb_device_handle* device_handle)
 				libusb_transfer* transfer = libusb_alloc_transfer(0);
 
 				int error = 0;
-				unsigned char* data = outs[out[j][0]];
+				//unsigned char* data = outs[out[j][0]];
+
+				std::string dat;
+				for(unsigned int k = 0; k < outs[out[j][0]].size(); k++)
+					dat.insert(dat.end(), outs[out[j][0]].begin(), outs[out[j][0]].end());
+				unsigned char* data = (unsigned char*)(dat.c_str());
 				int len = 0;
 				if ((error = libusb_interrupt_transfer(device_handle, 0x01, data, sizeof(data), &len, 0)) < 0)
 					std::cout << "ERREUR " << libusb_strerror(error) << std::endl;
 
-				std::cout << "Data sent : " << outs[out[j][0]] << std::endl;
+				//std::cout << "Data sent : " << outs[out[j][0]] << std::endl;
+				std::cout << "Data sent : " << data << std::endl;
 
 				//dev.write(0x1, outs[out[j][0]])
 
@@ -115,12 +125,19 @@ int main()
 {
 	std::cout << "FCU" << std::endl;
 	
-	outs.push_back({ "37", "40", "00", "00" });
-	outs.push_back({ "37", "42", "00", "00" });
-	outs.push_back({ "37", "44", "4A", "BD" });
-	outs.push_back({ "37", "46", "00", "00" });
-	outs.push_back({ "37", "48", "00", "00" });
-	outs.push_back({ "37", "4A", "00", "80" });
+	outs.push_back({ (unsigned int)std::stoi("37", nullptr, 16), (unsigned int)std::stoi("40", nullptr, 16), (unsigned int)std::stoi("00", nullptr, 16), (unsigned int)std::stoi("00", nullptr, 16) });
+	outs.push_back({ (unsigned int)std::stoi("37", nullptr, 16), (unsigned int)std::stoi("42", nullptr, 16), (unsigned int)std::stoi("00", nullptr, 16), (unsigned int)std::stoi("00", nullptr, 16) });
+	outs.push_back({ (unsigned int)std::stoi("37", nullptr, 16), (unsigned int)std::stoi("44", nullptr, 16), (unsigned int)std::stoi("4A", nullptr, 16), (unsigned int)std::stoi("BD", nullptr, 16) });
+	outs.push_back({ (unsigned int)std::stoi("37", nullptr, 16), (unsigned int)std::stoi("45", nullptr, 16), (unsigned int)std::stoi("00", nullptr, 16), (unsigned int)std::stoi("00", nullptr, 16) });
+	outs.push_back({ (unsigned int)std::stoi("37", nullptr, 16), (unsigned int)std::stoi("46", nullptr, 16), (unsigned int)std::stoi("00", nullptr, 16), (unsigned int)std::stoi("00", nullptr, 16) });
+	outs.push_back({ (unsigned int)std::stoi("37", nullptr, 16), (unsigned int)std::stoi("4A", nullptr, 16), (unsigned int)std::stoi("00", nullptr, 16), (unsigned int)std::stoi("00", nullptr, 16) });
+	
+	/*outs.push_back({ 37, 40, 00, 00 });
+	outs.push_back({ 37, 42, 00, 00 });
+	outs.push_back({ 37, 44, 4A, BD });
+	outs.push_back({ 37, 46, 00, 00 });
+	outs.push_back({ 37, 48, 00, 00 });
+	outs.push_back({ 37, 4A, 00, 80 });*/
 
 	//outputs.append([nbData, index])
 	outputs.push_back({ 1, 0 }); //CPT_FD
