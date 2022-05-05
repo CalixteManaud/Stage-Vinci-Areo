@@ -82,7 +82,7 @@ void ComponentTester::run()
 	while (m_window.isOpen())
 	{
 		m_deltaTime = m_clock.restart().asSeconds();
-		//std::cout << static_cast<int>(1.0f / m_deltaTime) << std::endl;
+		std::cout << static_cast<int>(1.0f / m_deltaTime) << std::endl;
 
 		update();
 		render();

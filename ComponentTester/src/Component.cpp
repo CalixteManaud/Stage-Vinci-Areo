@@ -66,11 +66,14 @@ Component::Component(const std::string& name, const sf::Vector2u size, const std
 	m_sprite(),
 	m_font(),
 	m_buttons(),
-	m_editMode(false),
-	m_reading(false),
 	m_idVendor(idVendor),
 	m_idProduct(idProduct),
 	m_thread(),
+	m_group(0),
+	m_byte(0),
+	m_dataRecieved(false),
+	m_editMode(false),
+	m_reading(false),
 	m_debugInfo(debugInfo)
 {
 	m_texture.loadFromFile("res/textures/" + m_name + ".png");
@@ -80,8 +83,6 @@ Component::Component(const std::string& name, const sf::Vector2u size, const std
 
 	if(m_name != "default")
 		loadButtons();
-
-	//m_thread.detach();
 }
 Component::~Component()
 {

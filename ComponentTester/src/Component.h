@@ -4,9 +4,6 @@
 #include "USB.h"
 
 #include <fstream>
-#include <iostream>
-#include <sstream>
-#include <string>
 #include <thread>
 #include <vector>
 
@@ -31,9 +28,7 @@ private:
 	bool m_dataRecieved;
 
 	bool m_editMode;
-
 	bool m_reading;
-
 	bool m_debugInfo;
 
 	void loadButtons();
