@@ -18,7 +18,7 @@ std::vector<std::vector<unsigned int>> outputs2;
 std::vector<unsigned int> codeOUT(13);
 
 
-std::vector<std::vector<unsigned int>> outputsOfCode(unsigned int code)
+/*std::vector<std::vector<unsigned int>> outputsOfCode(unsigned int code)
 {
 	
 	if (std::find(codeOUT.begin(), codeOUT.end(), code) != codeOUT.end())
@@ -119,114 +119,12 @@ void output_sequence(bool on, bool all, libusb_device_handle* device_handle)
 	{
 		std::cout << "Not yet implemented" << std::endl;
 	}
-}
+}*/
 
 int main()
 {
 	std::cout << "FCU" << std::endl;
 	
-	outs.push_back({ (unsigned int)std::stoi("37", nullptr, 16), (unsigned int)std::stoi("40", nullptr, 16), (unsigned int)std::stoi("00", nullptr, 16), (unsigned int)std::stoi("00", nullptr, 16) });
-	outs.push_back({ (unsigned int)std::stoi("37", nullptr, 16), (unsigned int)std::stoi("42", nullptr, 16), (unsigned int)std::stoi("00", nullptr, 16), (unsigned int)std::stoi("00", nullptr, 16) });
-	outs.push_back({ (unsigned int)std::stoi("37", nullptr, 16), (unsigned int)std::stoi("44", nullptr, 16), (unsigned int)std::stoi("4A", nullptr, 16), (unsigned int)std::stoi("BD", nullptr, 16) });
-	outs.push_back({ (unsigned int)std::stoi("37", nullptr, 16), (unsigned int)std::stoi("45", nullptr, 16), (unsigned int)std::stoi("00", nullptr, 16), (unsigned int)std::stoi("00", nullptr, 16) });
-	outs.push_back({ (unsigned int)std::stoi("37", nullptr, 16), (unsigned int)std::stoi("46", nullptr, 16), (unsigned int)std::stoi("00", nullptr, 16), (unsigned int)std::stoi("00", nullptr, 16) });
-	outs.push_back({ (unsigned int)std::stoi("37", nullptr, 16), (unsigned int)std::stoi("4A", nullptr, 16), (unsigned int)std::stoi("00", nullptr, 16), (unsigned int)std::stoi("00", nullptr, 16) });
-	
-	/*outs.push_back({ 37, 40, 00, 00 });
-	outs.push_back({ 37, 42, 00, 00 });
-	outs.push_back({ 37, 44, 4A, BD });
-	outs.push_back({ 37, 46, 00, 00 });
-	outs.push_back({ 37, 48, 00, 00 });
-	outs.push_back({ 37, 4A, 00, 80 });*/
-
-	//outputs.append([nbData, index])
-	outputs.push_back({ 1, 0 }); //CPT_FD
-	outputs.push_back({ 1, 1 }); //PT_LS
-	outputs.push_back({ 1, 2 }); //PT_CSTR
-	outputs.push_back({ 1, 3 }); //PT_WPT
-	outputs.push_back({ 1, 4 }); //PT_VOR
-	outputs.push_back({ 1, 5 }); //PT_NDB
-	outputs.push_back({ 1, 6 }); //PT_ARPT
-	outputs.push_back({ 2, 7 }); //PT_QFE
-	outputs.push_back({ 2, 9 }); //PT_QNH
-	outputs.push_back({ 2, 11 }); //SPD
-	outputs.push_back({ 2, 13 }); //MACH
-	outputs.push_back({ 8, 15 }); //HDGVS
-	outputs.push_back({ 8, 23 }); //TRKFPA
-	outputs.push_back({ 1, 31 }); //HDGDOT
-	outputs.push_back({ 1, 32 }); //ALTDOT
-	outputs.push_back({ 1, 33 }); //SPDDOT
-	outputs.push_back({ 1, 34 }); //AP1
-	outputs.push_back({ 1, 35 }); //AP2
-	outputs.push_back({ 1, 36 }); //ATHR
-	outputs.push_back({ 1, 37 }); //LOC
-	outputs.push_back({ 1, 38 }); //APPR
-	outputs.push_back({ 1, 39 }); //EXPED
-	outputs.push_back({ 1, 40 }); //CPT_FD
-	outputs.push_back({ 1, 41 }); //CPT_LS
-	outputs.push_back({ 1, 42 }); //CPT_CSTR
-	outputs.push_back({ 1, 43 }); //CPT_WPT
-	outputs.push_back({ 1, 44 }); //CPT_VOR
-	outputs.push_back({ 1, 45 }); //CPT_NDB
-	outputs.push_back({ 1, 46 }); //CPT_ARPT
-
-	outputs.push_back({ 2, 47 }); //CPT_QFE
-	outputs.push_back({ 2, 49 }); //CPT_QNH
-
-	//outputs2.append([groupe, byte, bit])
-	outputs2.push_back({ 3, 0, 0 }); //CPT_FD
-	outputs2.push_back({ 3, 0, 1 }); //CPT_LS
-	outputs2.push_back({ 3, 0, 4 }); //CPT_CSTR
-	outputs2.push_back({ 3, 0, 2 }); //CPT_WPT
-	outputs2.push_back({ 3, 0, 3 }); //CPT_VOR
-	outputs2.push_back({ 3, 0, 6 }); //CPT_NDB
-	outputs2.push_back({ 3, 0, 5 }); //CPT_ARPT
-	outputs2.push_back({ 3, 1, 0 }); //CPT_QFE
-	outputs2.push_back({ 3, 1, 1 }); //CPT_QFE
-	outputs2.push_back({ 3, 1, 5 }); //CPT_QNH
-	outputs2.push_back({ 3, 1, 6 }); //CPT_QNH
-	outputs2.push_back({ 0, 0, 2 }); //SPD
-	outputs2.push_back({ 0, 0, 3 }); //SPD
-
-	outputs2.push_back({ 0, 0, 5 }); //MACH
-	outputs2.push_back({ 0, 0, 6 }); //MACH
-	outputs2.push_back({ 0, 0, 0 }); //HDGVS
-	outputs2.push_back({ 0, 0, 1 }); //HDGVS
-	outputs2.push_back({ 0, 1, 0 }); //HDGVS
-	outputs2.push_back({ 0, 1, 1 }); //HDGVS
-	outputs2.push_back({ 1, 1, 1 }); //HDGVS
-	outputs2.push_back({ 1, 1, 6 }); //HDGVS
-	outputs2.push_back({ 2, 0, 2 }); //HDGVS
-	outputs2.push_back({ 2, 0, 4 }); //HDGVS
-	outputs2.push_back({ 0, 1, 5 }); //TRKFPA
-	outputs2.push_back({ 0, 1, 6 }); //TRKFPA
-	outputs2.push_back({ 1, 1, 2 }); //TRKFPA
-	outputs2.push_back({ 1, 1, 3 }); //TRKFPA
-	outputs2.push_back({ 1, 1, 4 }); //TRKFPA
-	outputs2.push_back({ 1, 1, 5 }); //TRKFPA
-	outputs2.push_back({ 2, 0, 0 }); //TRKFPA
-	outputs2.push_back({ 2, 0, 5 }); //TRKFPA
-	outputs2.push_back({ 0, 1, 2 }); //HDGDOT
-	outputs2.push_back({ 2, 1, 1 }); //ALTDOT
-	outputs2.push_back({ 0, 0, 4 }); //SPDDOT
-	outputs2.push_back({ 1, 0, 6 }); //AP1
-	outputs2.push_back({ 1, 0, 4 }); //AP2
-	outputs2.push_back({ 1, 0, 3 }); //ATHR
-	outputs2.push_back({ 1, 0, 5 }); //LOC
-	outputs2.push_back({ 1, 0, 1 }); //APPR
-	outputs2.push_back({ 1, 0, 2 }); //EXPED
-	outputs2.push_back({ 4, 1, 0 }); //FO_FD
-	outputs2.push_back({ 4, 1, 1 }); //FO_LS
-	outputs2.push_back({ 4, 1, 4 }); //FO_CSTR
-	outputs2.push_back({ 4, 1, 6 }); //FO_WPT
-	outputs2.push_back({ 4, 1, 3 }); //FO_VOR
-	outputs2.push_back({ 4, 1, 2 }); //FO_NDB
-	outputs2.push_back({ 4, 1, 5 }); //FO_ARPT
-	outputs2.push_back({ 5, 1, 0 }); //FO_QFE
-	outputs2.push_back({ 5, 1, 6 }); //FO_QFE
-	outputs2.push_back({ 5, 1, 1 }); //FO_QNH
-	outputs2.push_back({ 5, 1, 5 }); //FO_QNH
-
 	std::iota(codeOUT.begin(), codeOUT.end(), 300);
 	codeOUT.push_back(314);
 
@@ -328,7 +226,184 @@ int main()
 			} while (length > 0);
 			std::cout << "Done" << std::endl;
 			
-			output_sequence(true, true, device_handle);
+			//output_sequence(true, true, device_handle);
+
+			for(unsigned int l = 0; l < 40000; l++)
+			{
+				//libusb_transfer* transfer = libusb_alloc_transfer(0);
+
+				unsigned char data[512];
+				int len = 0;
+				if((error = libusb_interrupt_transfer(device_handle, 0x82, data, sizeof(data), &len, 0)) < 0)
+					std::cout << "ERREUR " << libusb_strerror(error) << std::endl;
+				//0x82 in
+				//0x01 out
+
+				for(unsigned int i = 0; i < len; i++)
+					std::cout << (int)data[i] << ' ';
+				std::cout << std::endl;
+
+				// exemple: 54 73 127 255
+				// 54 ne change jamais, on ne le récupère pas
+
+				// data[1] : 65, 67, 69, 71, 73, 75
+				// data[2] : 190, 189, 187, 183, 175, 223, 191, 127, 254, 253, 251, 239, 207, 126, 125, 123, 119, 111, 247, 219, 221
+				// data[3] : 143, 151, 223, 159, 127, 191, 155, 157, 252, 253, 254, 199, 247, 231, 135, 243, 211, 227
+
+				std::string button;
+
+				if()
+
+				// Left buttons
+				if(data[1] == 65 && (data[2] == 126 || data[2] == 190 || data[2] == 222 || data[2] == 254) && (data[3] == 251 || data[3] == 253 || data[3] == 254 || data[3] == 255))
+					button = "lcstr";
+				else if(data[1] == 65 && data[2] == 221 && data[3] == 127)
+					button = "lwpt";
+				else if(data[1] == 65 && data[2] == 219 && data[3] == 127)
+					button = "lvor.d";
+				else if(data[1] == 65 && data[2] == 215 && data[3] == 127)
+					button = "lndb";
+				else if(data[1] == 65 && data[2] == 207 && data[3] == 127)
+					button = "larpt";
+				
+				// Right buttons
+				else if(data[1] == 73 && data[2] == 175 && data[3] == 127)
+					button = "rcstr";
+				else if(data[1] == 73 && data[2] == 183 && data[3] == 127)
+					button = "rwpt";
+				else if(data[1] == 73 && data[2] == 187 && data[3] == 127)
+					button = "rvor.d";
+				else if(data[1] == 73 && data[2] == 189 && data[3] == 127)
+					button = "rndb";
+				else if(data[1] == 73 && data[2] == 190 && data[3] == 127)
+					button = "rarpt";
+				
+				// Left joystick
+				else if(data[1] == 67 && data[2] == 223 && data[3] == 255)
+					button = "ljoystickpress";
+				else if(data[1] == 67 && data[2] == 223 && data[3] == 191)
+					button = "ljoystickturn1";
+				else if(data[1] == 67 && data[2] == 223 && data[3] == 223)
+					button = "ljoystickturn2";
+				else if(data[1] == 67 && data[2] == 255 && data[3] == 159)
+					button = "ljoystickselect";
+
+				// Right joystick
+				else if(data[1] == 75 && data[2] == 223 && data[3] == 255)
+					button = "rjoystickpress";
+				else if(data[1] == 75 && data[2] == 223 && data[3] == 247)
+					button = "rjoystickturn1";
+				else if(data[1] == 75 && data[2] == 223 && data[3] == 251)
+					button = "rjoystickturn2";
+				else if(data[1] == 75 && data[2] == 255 && data[3] == 243)
+					button = "rjoystickselect";
+				
+				// Bottom left buttons
+				else if(data[1] == 67 && data[2] == 223 && data[3] == 143)
+					button = "lfd";
+				else if(data[1] == 67 && data[2] == 223 && data[3] == 151)
+					button = "lils";
+				
+				// Bottom right buttons
+				else if(data[1] == 75 && data[2] == 223 && data[3] == 227)
+					button = "rfd";
+				else if(data[1] == 75 && data[2] == 223 && data[3] == 211)
+					button = "rils";
+				
+				// Left selectors
+				else if(data[1] == 65 && data[2] == 223 && data[3] == 255)
+					button = "lselector1turn";
+				else if(data[1] == 65 && data[2] == 255 && data[3] == 127)
+					button = "lselector2turn";
+				
+				// Right selectors
+				else if(data[1] == 73 && data[2] == 255 && data[3] == 127)
+					button = "rselector1turn";
+				else if(data[1] == 73 && data[2] == 255 && data[3] == 253)
+					button = "rselector2turn";
+				
+				// Left switches
+				else if(data[1] == 67 && data[2] == 223 && data[3] == 155)
+					button = "lswitch1left";
+				else if(data[1] == 67 && data[2] == 223 && data[3] == 159)
+					button = "lswitch1middle";
+				else if(data[1] == 67 && data[2] == 223 && data[3] == 157)
+					button = "lswitch1right";
+				else if(data[1] == 69 && data[2] == 127 && data[3] == 255)
+					button = "lswitch2left";
+				else if(data[1] == 69 && data[2] == 255 && data[3] == 255)
+					button = "lswitch2middle";
+				else if(data[1] == 69 && data[2] == 191 && data[3] == 255)
+					button = "lswitch2right";
+
+				// Right switches
+				else if(data[1] == 71 && data[2] == 251 && data[3] == 247)
+					button = "rswitch1left";
+				else if(data[1] == 71 && data[2] == 255 && data[3] == 147)
+					button = "rswitch1middle";
+				else if(data[1] == 71 && data[2] == 247 && data[3] == 247)
+					button = "rswitch1right";
+				else if(data[1] == 75 && data[2] == 221 && data[3] == 243)
+					button = "rswitch2left";
+				else if(data[1] == 75 && data[2] == 223 && data[3] == 243)
+					button = "rswitch2middle";
+				else if(data[1] == 75 && data[2] == 219 && data[3] == 243)
+					button = "rswitch2right";
+				
+				// Middle buttons
+				else if(data[1] == 69 && data[2] == 254 && data[3] == 255)
+					button = "spdmach";
+				else if(data[1] == 69 && data[2] == 253 && data[3] == 255)
+					button = "hdgtrkv/sfpa";
+				//else if(data[1] == 69 && data[2] == 253 && data[3] == 255)
+				//	button = "metricalt";
+				else if(data[1] == 69 && data[2] == 247 && data[3] == 255)
+					button = "loc";
+				else if(data[1] == 69 && data[2] == 239 && data[3] == 255)
+					button = "ap1";
+				else if(data[1] == 69 && data[2] == 223 && data[3] == 255)
+					button = "ap2";
+				else if(data[1] == 69 && data[2] == 251 && data[3] == 255)
+					button = "a/thr";
+				else if(data[1] == 71 && data[2] == 253 && data[3] == 247)
+					button = "exped";
+				else if(data[1] == 71 && data[2] == 254 && data[3] == 247)
+					button = "appr";
+				
+				// Center joysticks
+				else if(data[1] == 69 && data[2] == 255 && data[3] == 251)
+					button = "cjoystick1press";
+				else if(data[1] == 69 && data[2] == 255 && data[3] == 253)
+					button = "cjoystick1turn1";
+				else if(data[1] == 69 && data[2] == 255 && data[3] == 254)
+					button = "cjoystick1turn2";
+				//else if(data[1] == 69 && data[2] == 255 && data[3] == 251)
+				//	button = "cjoystick2press";
+				else if(data[1] == 69 && data[2] == 255 && data[3] == 220)
+					button = "cjoystick2turn1";
+				else if(data[1] == 69 && data[2] == 255 && data[3] == 236)
+					button = "cjoystick2turn2";
+				else if(data[1] == 71 && data[2] == 79 && data[3] == 199)
+					button = "cjoystick3press";
+				else if(data[1] == 71 && data[2] == 223 && data[3] == 199)
+					button = "cjoystick3turn1";
+				else if(data[1] == 71 && data[2] == 229 && data[3] == 199)
+					button = "cjoystick3turn2";
+				else if(data[1] == 71 && data[2] == 207 && data[3] == 207)
+					button = "cjoystick3select";
+				else if(data[1] == 71 && data[2] == 207 && data[3] == 199)
+					button = "cjoystick4press";
+				else if(data[1] == 71 && data[2] == 207 && data[3] == 215)
+					button = "cjoystick4turn1";
+				else if(data[1] == 71 && data[2] == 207 && data[3] == 231)
+					button = "cjoystick4turn2";
+				
+				else
+					button = "unknown";
+
+				//if(button != "unknown")
+				//	std::cout << button << std::endl;
+			}
 
 			libusb_close(device_handle);
 		}
