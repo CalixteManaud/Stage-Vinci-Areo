@@ -109,7 +109,7 @@ int main()
 				unsigned char data[512];
 				int len = 0;
 				if((error = libusb_interrupt_transfer(device_handle, 0x82, data, sizeof(data), &len, 0)) < 0)
-				std::cout << "ERREUR " << libusb_strerror(error) << std::endl;
+					std::cout << "ERREUR " << libusb_strerror(error) << std::endl;
 				//0x82 in
 				//0x01 out
 
