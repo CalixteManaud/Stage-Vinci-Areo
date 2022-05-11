@@ -243,6 +243,8 @@ int main()
 					std::cout << (int)data[i] << ' ';
 				std::cout << std::endl;
 
+				/*
+				
 				// exemple: 54 73 127 255
 				// 54 ne change jamais, on ne le récupère pas
 
@@ -252,34 +254,8 @@ int main()
 
 				std::string button;
 
-				if()
-
-				// Left buttons
-				if(data[1] == 65 && (data[2] == 126 || data[2] == 190 || data[2] == 222 || data[2] == 254) && (data[3] == 251 || data[3] == 253 || data[3] == 254 || data[3] == 255))
-					button = "lcstr";
-				else if(data[1] == 65 && data[2] == 221 && data[3] == 127)
-					button = "lwpt";
-				else if(data[1] == 65 && data[2] == 219 && data[3] == 127)
-					button = "lvor.d";
-				else if(data[1] == 65 && data[2] == 215 && data[3] == 127)
-					button = "lndb";
-				else if(data[1] == 65 && data[2] == 207 && data[3] == 127)
-					button = "larpt";
-				
-				// Right buttons
-				else if(data[1] == 73 && data[2] == 175 && data[3] == 127)
-					button = "rcstr";
-				else if(data[1] == 73 && data[2] == 183 && data[3] == 127)
-					button = "rwpt";
-				else if(data[1] == 73 && data[2] == 187 && data[3] == 127)
-					button = "rvor.d";
-				else if(data[1] == 73 && data[2] == 189 && data[3] == 127)
-					button = "rndb";
-				else if(data[1] == 73 && data[2] == 190 && data[3] == 127)
-					button = "rarpt";
-				
 				// Left joystick
-				else if(data[1] == 67 && data[2] == 223 && data[3] == 255)
+				if(data[1] == 67 && data[2] == 223 && data[3] == 255)
 					button = "ljoystickpress";
 				else if(data[1] == 67 && data[2] == 223 && data[3] == 191)
 					button = "ljoystickturn1";
@@ -297,37 +273,17 @@ int main()
 					button = "rjoystickturn2";
 				else if(data[1] == 75 && data[2] == 255 && data[3] == 243)
 					button = "rjoystickselect";
-				
-				// Bottom left buttons
-				else if(data[1] == 67 && data[2] == 223 && data[3] == 143)
-					button = "lfd";
-				else if(data[1] == 67 && data[2] == 223 && data[3] == 151)
-					button = "lils";
-				
-				// Bottom right buttons
-				else if(data[1] == 75 && data[2] == 223 && data[3] == 227)
-					button = "rfd";
-				else if(data[1] == 75 && data[2] == 223 && data[3] == 211)
-					button = "rils";
-				
-				// Left selectors
-				else if(data[1] == 65 && data[2] == 223 && data[3] == 255)
-					button = "lselector1turn";
-				else if(data[1] == 65 && data[2] == 255 && data[3] == 127)
-					button = "lselector2turn";
-				
-				// Right selectors
-				else if(data[1] == 73 && data[2] == 255 && data[3] == 127)
-					button = "rselector1turn";
-				else if(data[1] == 73 && data[2] == 255 && data[3] == 253)
-					button = "rselector2turn";
-				
+
 				// Left switches
-				else if(data[1] == 67 && data[2] == 223 && data[3] == 155)
+				else if(data[1] == 67 && data[2] == 223 && data[3] == 155 ||
+				data[1] == 67 && data[2] == 223 && data[3] == 250 ||
+				data[1] == 67 && data[2] == 223 && data[3] == 251)
 					button = "lswitch1left";
-				else if(data[1] == 67 && data[2] == 223 && data[3] == 159)
+				else if(data[1] == 67 && data[2] == 223 && data[3] == 254 ||
+				data[1] == 67 && data[2] == 223 && data[3] == 255)
 					button = "lswitch1middle";
-				else if(data[1] == 67 && data[2] == 223 && data[3] == 157)
+				else if(data[1] == 67 && data[2] == 223 && data[3] == 252 ||
+				data[1] == 67 && data[2] == 223 && data[3] == 253)
 					button = "lswitch1right";
 				else if(data[1] == 69 && data[2] == 127 && data[3] == 255)
 					button = "lswitch2left";
@@ -337,11 +293,11 @@ int main()
 					button = "lswitch2right";
 
 				// Right switches
-				else if(data[1] == 71 && data[2] == 251 && data[3] == 247)
+				else if(data[1] == 71 && data[2] == 203 && data[3] == 247)
 					button = "rswitch1left";
-				else if(data[1] == 71 && data[2] == 255 && data[3] == 147)
+				else if(data[1] == 71 && data[2] == 207 && data[3] == 247)
 					button = "rswitch1middle";
-				else if(data[1] == 71 && data[2] == 247 && data[3] == 247)
+				else if(data[1] == 71 && data[2] == 199 && data[3] == 247)
 					button = "rswitch1right";
 				else if(data[1] == 75 && data[2] == 221 && data[3] == 243)
 					button = "rswitch2left";
@@ -349,7 +305,7 @@ int main()
 					button = "rswitch2middle";
 				else if(data[1] == 75 && data[2] == 219 && data[3] == 243)
 					button = "rswitch2right";
-				
+
 				// Middle buttons
 				else if(data[1] == 69 && data[2] == 254 && data[3] == 255)
 					button = "spdmach";
@@ -397,12 +353,82 @@ int main()
 					button = "cjoystick4turn1";
 				else if(data[1] == 71 && data[2] == 207 && data[3] == 231)
 					button = "cjoystick4turn2";
+
+				// Bottom left buttons
+				else if(data[1] == 67 && data[2] == 223 && data[3] == 142 ||
+				data[1] == 67 && data[2] == 223 && data[3] == 238)
+					button = "lfd";
+				else if(data[1] == 67 && data[2] == 223 && data[3] == 151 ||
+				data[1] == 67 && data[2] == 223 && data[3] == 246)
+					button = "lils";			
+
+				// Left buttons
+				else if(data[1] == 65 && data[2] == 254 && data[3] == 251 ||
+				data[1] == 65 && data[2] == 254 && data[3] == 219 ||
+				data[1] == 65 && data[2] == 254 && data[3] == 123 ||
+				data[1] == 65 && data[2] == 254 && data[3] == 187 ||
+				data[1] == 65 && data[2] == 254 && data[3] == 235 ||
+				data[1] == 65 && data[2] == 126 && data[3] == 239 ||
+				data[1] == 65 && data[2] == 190 && data[3] == 239 ||
+				data[1] == 65 && data[2] == 222 && data[3] == 239 ||
+				data[1] == 65 && data[2] == 254 && data[3] == 237 ||
+				data[1] == 65 && data[2] == 254 && data[3] == 238 ||
+				data[1] == 65 && data[2] == 254 && data[3] == 190 ||
+				data[1] == 65 && data[2] == 254 && data[3] == 126 ||
+				data[1] == 65 && data[2] == 254 && data[3] == 222 ||
+				data[1] == 65 && data[2] == 254 && data[3] == 254 ||
+				data[1] == 65 && data[2] == 254 && data[3] == 253 ||
+				data[1] == 65 && data[2] == 254 && data[3] == 221 ||
+				data[1] == 65 && data[2] == 254 && data[3] == 125 ||
+				data[1] == 65 && data[2] == 254 && data[3] == 189)
+					button = "lcstr";
+				else if(data[1] == 65 && data[2] == 221 && data[3] == 127)
+					button = "lwpt";
+				else if(data[1] == 65 && data[2] == 219 && data[3] == 127)
+					button = "lvor.d";
+				else if(data[1] == 65 && data[2] == 215 && data[3] == 127)
+					button = "lndb";
+				else if(data[1] == 65 && data[2] == 207 && data[3] == 127)
+					button = "larpt";
+
+				// Bottom right buttons
+				else if(data[1] == 75 && data[2] == 223 && data[3] == 227)
+					button = "rfd";
+				else if(data[1] == 75 && data[2] == 223 && data[3] == 211)
+					button = "rils";
+				
+				// Right buttons
+				else if(data[1] == 73 && data[2] == 175 && data[3] == 127)
+					button = "rcstr";
+				else if(data[1] == 73 && data[2] == 183 && data[3] == 127)
+					button = "rwpt";
+				else if(data[1] == 73 && data[2] == 187 && data[3] == 127)
+					button = "rvor.d";
+				else if(data[1] == 73 && data[2] == 189 && data[3] == 127)
+					button = "rndb";
+				else if(data[1] == 73 && data[2] == 190 && data[3] == 127)
+					button = "rarpt";
+				
+				// Left selectors
+				else if(data[1] == 65 && data[2] == 223 && data[3] == 255 ||
+				data[1] == 65 && data[2] == 255 && data[3] == 251)
+					button = "lselector1turn";
+				else if(data[1] == 65 && data[2] == 255 && data[3] == 255)
+					button = "lselector2turn";
+				
+				// Right selectors
+				else if(data[1] == 73 && data[2] == 255 && data[3] == 127)
+					button = "rselector1turn";
+				else if(data[1] == 73 && data[2] == 255 && data[3] == 251)
+					button = "rselector2turn";
 				
 				else
 					button = "unknown";
 
-				//if(button != "unknown")
-				//	std::cout << button << std::endl;
+				if(button != "unknown")
+					std::cout << button << std::endl;
+
+				*/
 			}
 
 			libusb_close(device_handle);
