@@ -88,7 +88,7 @@ libusb_device* USB::getDevice(const std::string& idVendor, const std::string& id
 
 	return device;
 }
-void USB::readDevice(libusb_device* device, unsigned int* group, unsigned int* byte, bool* reading, bool* dataRecieved)
+void USB::readDevice(libusb_device* device, bool* reading, bool* dataRecieved, unsigned char* data)
 {
 	if (!device)
 	{
@@ -112,7 +112,6 @@ void USB::readDevice(libusb_device* device, unsigned int* group, unsigned int* b
 	libusb_device_descriptor device_descriptor;
 	error = libusb_get_device_descriptor(device, &device_descriptor);
 	
-	unsigned char data[512];
 	int length = 0;
 
 	if(m_debugInfo)
@@ -136,16 +135,6 @@ void USB::readDevice(libusb_device* device, unsigned int* group, unsigned int* b
 
 		if(m_debugInfo && error < 0 && error != LIBUSB_ERROR_NO_DEVICE)
 			std::cout << libusb_strerror(error) << std::endl;
-
-		unsigned int groupe = std::bitset<32>((data[1] & ~(1 << 6)) >> 1).to_ulong();
-
-		unsigned int byte1 = ~(data[2]) & 255;
-		byte1 = (byte1 & -byte1);
-		if (byte1 != 0)
-			byte1 = log2((byte1 & -byte1)) + 1;
-
-		*group = groupe;
-		*byte = byte1;
 
 		*dataRecieved = true;
 	}

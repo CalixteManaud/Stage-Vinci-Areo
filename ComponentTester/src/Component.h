@@ -19,12 +19,13 @@ private:
 	sf::Font m_font;
 	std::vector<Button> m_buttons;
 
+	sf::Text m_additionalInfo;
+
 	std::string m_idVendor;
 	std::string m_idProduct;
 
 	std::thread m_thread;
-	unsigned int m_group;
-	unsigned int m_byte;
+	unsigned char m_data[512];
 	bool m_dataRecieved;
 
 	bool m_editMode;

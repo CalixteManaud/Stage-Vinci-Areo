@@ -24,5 +24,5 @@ public:
 	void close();
 
 	libusb_device* getDevice(const std::string& idVendor, const std::string& idProduct);
-	void readDevice(libusb_device* device, unsigned int* group, unsigned int* byte, bool* reading, bool* dataRecieved);
+	void readDevice(libusb_device* device, bool* reading, bool* dataRecieved, unsigned char* data);
 };

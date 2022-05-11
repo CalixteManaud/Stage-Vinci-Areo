@@ -66,11 +66,11 @@ Component::Component(const std::string& name, const sf::Vector2u size, const std
 	m_sprite(),
 	m_font(),
 	m_buttons(),
+	m_additionalInfo(),
 	m_idVendor(idVendor),
 	m_idProduct(idProduct),
 	m_thread(),
-	m_group(0),
-	m_byte(0),
+	m_data(),
 	m_dataRecieved(false),
 	m_editMode(false),
 	m_reading(false),
@@ -80,8 +80,11 @@ Component::Component(const std::string& name, const sf::Vector2u size, const std
 	m_sprite.setTexture(m_texture);
 
 	m_font.loadFromFile("res/fonts/arial.ttf");
+	m_additionalInfo.setFont(m_font);
+	m_additionalInfo.setString("__ __ __ __");
+	m_additionalInfo.setPosition(std::roundf(320.0f - m_additionalInfo.getGlobalBounds().width * 0.5f), std::roundf(300.0f));
 
-	if(m_name != "default")
+	if(m_name != "default" && m_name != "fcu")
 		loadButtons();
 }
 Component::~Component()
@@ -105,7 +108,7 @@ void Component::start(USB* usb)
 {
 	m_reading = true;
 	m_dataRecieved = false;
-	m_thread = std::thread(&USB::readDevice, usb, usb->getDevice(m_idVendor, m_idProduct), &m_group, &m_byte, &m_reading, &m_dataRecieved);
+	m_thread = std::thread(&USB::readDevice, usb, usb->getDevice(m_idVendor, m_idProduct), &m_reading, &m_dataRecieved, std::ref(m_data));
 	m_thread.detach();
 }
 void Component::stop(USB* usb)
@@ -120,12 +123,19 @@ void Component::updateHardware()
 	{
 		if (m_name == "mcdu")
 		{
+			unsigned int group = std::bitset<32>((m_data[1] & ~(1 << 6)) >> 1).to_ulong();
+
+			unsigned int byte = ~(m_data[2]) & 255;
+			byte = (byte & -byte);
+			if (byte != 0)
+				byte = log2((byte & -byte)) + 1;
+
 			std::string value;
 
-			switch (m_group)
+			switch (group)
 			{
 			case 0:
-				switch (m_byte)
+				switch (byte)
 				{
 				case 1: value = "."; break;
 				case 2: value = "0"; break;
@@ -139,7 +149,7 @@ void Component::updateHardware()
 				}
 				break;
 			case 1:
-				switch (m_byte)
+				switch (byte)
 				{
 				case 1: value = "7"; break;
 				case 2: value = "8"; break;
@@ -153,7 +163,7 @@ void Component::updateHardware()
 				}
 				break;
 			case 2:
-				switch (m_byte)
+				switch (byte)
 				{
 				case 1: value = "4"; break;
 				case 2: value = "5"; break;
@@ -167,7 +177,7 @@ void Component::updateHardware()
 				}
 				break;
 			case 3:
-				switch (m_byte)
+				switch (byte)
 				{
 				case 1: value = "1"; break;
 				case 2: value = "2"; break;
@@ -181,7 +191,7 @@ void Component::updateHardware()
 				}
 				break;
 			case 4:
-				switch (m_byte)
+				switch (byte)
 				{
 				case 1: value = "rarrow"; break;
 				case 2: value = "darrow"; break;
@@ -195,7 +205,7 @@ void Component::updateHardware()
 				}
 				break;
 			case 5:
-				switch (m_byte)
+				switch (byte)
 				{
 				case 1: value = "larrow"; break;
 				case 2: value = "uarrow"; break;
@@ -209,7 +219,7 @@ void Component::updateHardware()
 				}
 				break;
 			case 6:
-				switch (m_byte)
+				switch (byte)
 				{
 				case 1: value = "airport"; break;
 				case 2: value = "blank2"; break;
@@ -223,7 +233,7 @@ void Component::updateHardware()
 				}
 				break;
 			case 7:
-				switch (m_byte)
+				switch (byte)
 				{
 				case 1: value = "radnav"; break;
 				case 2: value = "f-pln"; break;
@@ -237,7 +247,7 @@ void Component::updateHardware()
 				}
 				break;
 			case 8:
-				switch (m_byte)
+				switch (byte)
 				{
 				case 1: value = "prog"; break;
 				case 2: value = "dir"; break;
@@ -251,7 +261,7 @@ void Component::updateHardware()
 				}
 				break;
 			case 9:
-				switch(m_byte)
+				switch(byte)
 				{
 					case 1: value = "dim"; break;
 					case 2: value = "brt"; break;
@@ -262,8 +272,6 @@ void Component::updateHardware()
 				value = "unknown";
 				break;
 			}
-
-			// Différence secf-pln et fuelpred selon le mcdu
 
 			for (unsigned int i = 0; i < m_buttons.size(); ++i)
 			{
@@ -278,6 +286,13 @@ void Component::updateHardware()
 					m_buttons[i].setColor(sf::Color::Transparent);
 				}
 			}
+
+			// Il y a une différence d'ordre entre secf-pln et fuelpred selon le mcdu
+		}
+		else if(m_name == "fcu")
+		{
+			m_additionalInfo.setString(std::to_string(m_data[0]) + ' ' + std::to_string(m_data[1]) + ' ' + std::to_string(m_data[2]) + ' ' + std::to_string(m_data[3]));
+			m_additionalInfo.setPosition(std::roundf(320.0f - m_additionalInfo.getGlobalBounds().width * 0.5f), std::roundf(300.0f));
 		}
 
 		m_dataRecieved = false;
@@ -399,6 +414,9 @@ void Component::update(const sf::RenderWindow& window, const sf::Event& event)
 void Component::render(sf::RenderWindow& window) const
 {
 	window.draw(m_sprite);
+
+	if(m_name == "fcu")
+		window.draw(m_additionalInfo);
 
 	for (unsigned int i = 0; i < m_buttons.size(); i++)
 		m_buttons[i].render(window, m_editMode);
