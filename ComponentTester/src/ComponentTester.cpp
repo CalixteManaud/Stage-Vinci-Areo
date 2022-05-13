@@ -71,6 +71,7 @@ ComponentTester::ComponentTester(bool debugInfo) :
 	m_components.push_back(new Component("default", sf::Vector2u(640, 480), "", "", debugInfo));
 	m_components.push_back(new Component("mcdu", sf::Vector2u(395, 640), "4d8", "71", debugInfo));
 	m_components.push_back(new Component("fcu", sf::Vector2u(640, 480), "4d8", "50", debugInfo));
+	m_components.push_back(new Component("pedestal", sf::Vector2u(640, 480), "4d8", "50", debugInfo));
 }
 ComponentTester::~ComponentTester()
 {
