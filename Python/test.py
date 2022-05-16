@@ -13,11 +13,19 @@ if dev.is_kernel_driver_active(interface) is True:
 
 if dev is None:
     raise ValueError('Device not found')
+    sys.exit(1)
+
+read_data = []
 
 while True:
     try:
         data = dev.read(0x82, 8, 500)
-        print(data)
+        print("Read: ", data)
+        print("Write: ", dev.write(1, '0x81'))
+        print(bin(data[2]))
+        print(bin(data[3]))
+        read_data.append([data[2], data[3]])
+        print(read_data)
     except usb.core.USBError as e:
         data = None
         if e.args == ('Operation timed out',):
