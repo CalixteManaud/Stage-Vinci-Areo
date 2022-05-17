@@ -84,14 +84,14 @@ Component::Component(const std::string& name, const sf::Vector2u size, const std
 	m_additionalInfo.setString("__ __ __ __");
 	m_additionalInfo.setPosition(std::roundf(320.0f - m_additionalInfo.getGlobalBounds().width * 0.5f), std::roundf(300.0f));
 
-	if(m_name != "default" && m_name != "fcu" && m_name != "pedestal")
+	if(m_name == "mcdu")
 		loadButtons();
 }
 Component::~Component()
 {
 	m_reading = false;
 
-	if(m_name != "default" && m_name != "fcu" && m_name != "pedestal")
+	if(m_name == "mcdu")
 		saveButtons();
 }
 
@@ -289,7 +289,7 @@ void Component::updateHardware()
 
 			// Il y a une différence d'ordre entre secf-pln et fuelpred selon le mcdu
 		}
-		else if(m_name == "fcu" || m_name == "pedestal")
+		else if(m_name != "default")
 		{
 			m_additionalInfo.setString(std::to_string(m_data[0]) + ' ' + std::to_string(m_data[1]) + ' ' + std::to_string(m_data[2]) + ' ' + std::to_string(m_data[3]));
 			m_additionalInfo.setPosition(std::roundf(320.0f - m_additionalInfo.getGlobalBounds().width * 0.5f), std::roundf(300.0f));
@@ -357,7 +357,7 @@ void Component::update(const sf::RenderWindow& window, const sf::Event& event)
 						m_buttons[j].setSelected(false);
 
 					m_buttons[i].setSelected(true);
-					break; // Un seul bouton peut �tre s�lectionn� � la fois
+					break; // Un seul bouton peut être sélectionné à la fois
 				}
 			}
 
@@ -415,7 +415,7 @@ void Component::render(sf::RenderWindow& window) const
 {
 	window.draw(m_sprite);
 
-	if(m_name == "fcu" || m_name == "pedestal")
+	if(m_name != "mcdu" && m_name != "default")
 		window.draw(m_additionalInfo);
 
 	for (unsigned int i = 0; i < m_buttons.size(); i++)

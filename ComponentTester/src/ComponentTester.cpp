@@ -17,9 +17,9 @@ void ComponentTester::update()
 			case sf::Keyboard::Num1: newActiveComponent = 1; break;
 			case sf::Keyboard::Num2: newActiveComponent = 2; break;
 			case sf::Keyboard::Num3: newActiveComponent = 3; break;
-			case sf::Keyboard::Num4: newActiveComponent = 4; break;
+			case sf::Keyboard::Quote: newActiveComponent = 4; break; // Num4 ne semble pas fonctionner
 			case sf::Keyboard::Num5: newActiveComponent = 5; break;
-			case sf::Keyboard::Num6: newActiveComponent = 6; break;
+			case sf::Keyboard::Hyphen: newActiveComponent = 6; break;  // Num6 ne semble pas fonctionner
 			case sf::Keyboard::Num7: newActiveComponent = 7; break;
 			case sf::Keyboard::Num8: newActiveComponent = 8; break;
 			case sf::Keyboard::Num9: newActiveComponent = 9; break;
@@ -71,7 +71,8 @@ ComponentTester::ComponentTester(bool debugInfo) :
 	m_components.push_back(new Component("default", sf::Vector2u(640, 480), "", "", debugInfo));
 	m_components.push_back(new Component("mcdu", sf::Vector2u(395, 640), "4d8", "71", debugInfo));
 	m_components.push_back(new Component("fcu", sf::Vector2u(640, 480), "4d8", "50", debugInfo));
-	m_components.push_back(new Component("pedestal", sf::Vector2u(640, 480), "4d8", "50", debugInfo));
+	m_components.push_back(new Component("overhead_panel", sf::Vector2u(640, 480), "4d8", "72", debugInfo));
+	m_components.push_back(new Component("pedestal", sf::Vector2u(640, 480), "4d8", "99", debugInfo));
 }
 ComponentTester::~ComponentTester()
 {
