@@ -6,7 +6,7 @@ import usb.core
 import usb.util
 from math import log
 
-import FCU
+import FCU_descriptor
 
 # Connexion spécifique du FCU
 dev = usb.core.find(find_all=False, idVendor=0x04d8, idProduct=0x0050)
