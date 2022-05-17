@@ -8,7 +8,7 @@ from math import log
 
 import FCU
 
-# Connexion spécifique du FCU
+# Connexion spÃ©cifique du FCU
 dev = usb.core.find(find_all=False, idVendor=0x04d8, idProduct=0x0050)
 
 interface = 0
@@ -34,18 +34,18 @@ while True:
         print(bin(data[2]))
         print(bin(data[3]))
 
-        # Représentation décimale des 6 bits intérieurs de l'octet
+        # ReprÃ©sentation dÃ©cimale des 6 bits intÃ©rieurs de l'octet
         b = bin((data[1] & ~(1 << 6)) >> 1)
         groupe = int(b, 2)
         print(groupe)
 
-        # Numéro du bit à 0
+        # NumÃ©ro du bit Ã  0
         # byte1 =  ~(data[2]) & 255
         # byte1 = (byte1 & -byte1)
         # byte1 = 0 if byte1 == 0 else log((byte1 & -byte1), 2) +1
         # byte1 = int(byte1)
 
-        # Numéro du bit qui a changé
+        # NumÃ©ro du bit qui a changÃ©
         for i in range(8):
             old = bin(inputsData[groupe][0])[2:].zfill(8)
             new = bin(data[2])[2:].zfill(8)
