@@ -159,4 +159,53 @@ Pour obtenir à ce résultat, il faut convertir les données reçus par l'usb (`
         byte1 = 0 if byte1 == 0 else log((byte1 & -byte1), 2) + 1
         byte1 = int(byte1)
 
-        
+FCU
+^^^
+
+Le FCU reçoivent des entrées de dispositifs de commandes tels que les ``leviers`` et - en conjonction avec l'``ordinateur de vol principal`` (MFC) - déterminent les propulseurs à déclencher pour obtenir la manoeuvre souhiatée.
+
+Trois fichiers importants sont utilisées pour le FCU, `FCU_descriptor <https://github.com/CalixteManaud/Stage-Vinci-Areo/blob/main/Python/FCU_descriptor.py>`_, qui fait d'office de nous donner les informations entrées et sorties, `test_FCU_input <https://github.com/CalixteManaud/Stage-Vinci-Areo/blob/main/Python/test_FCU_input.py>`_, qui permet de nous qu'elle bouton est appuyé depuis l'ordinateur et le `test_FCU_output <https://github.com/CalixteManaud/Stage-Vinci-Areo/blob/main/Python/test_FCU_output.py>`_, dont celui-ci nous permet d'afficher des valeurs dans les écrans lcd.
+
+Voici un extrait d'un code:
+
+.. code-block:: python
+    
+    def test(on):
+    code = 300
+    for i in range(39):
+        print("Code ", i)
+        validCode = True
+        for l in range(len(info)):
+            if code == info[l]:
+                validCode = False
+
+        if not validCode:
+            print("discard")
+            code += 1
+            continue
+
+        out = FCU.outputsOfCode(code)
+        code += 1
+
+        for j in range(len(out)):
+            byte = 2 ** out[j][2]
+
+            if on == True:
+                if out[j][1] == 0:
+                    outs[out[j][0]][2] |= byte
+                else:
+                    outs[out[j][0]][3] |= byte
+            else:
+                byte = ~byte
+                if out[j][1] == 0:
+                    outs[out[j][0]][2] &= byte
+                else:
+                    outs[out[j][0]][3] &= byte
+
+            dev.write(0x1, outs[out[j][0]])
+        time.sleep(0.7)
+
+OVERHEAD & PEDESTAL PANEL
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+OVERHEAD
