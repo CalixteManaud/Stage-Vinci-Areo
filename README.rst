@@ -136,7 +136,7 @@ Parfois plusieurs composants peut être brancher sur l'ordinateur sans qu'on sac
 MCDU
 ^^^^
 
-Le ``MCDU`` permet d'aider le(s) pilote(s) pendant le vol en fournissant des renseignements sur le pilotatge, la navigation, la consommation de carburant, etc. Il présent sur plusieurs appareils (Avions de ligne, hélicoptère..). Poour en savoir plus, voici le `lien <https://fr.wikipedia.org/wiki/Fichier:CP_MCDU.jpg>`_.
+Le ``MCDU`` permet d'aider le(s) pilote(s) pendant le vol en fournissant des renseignements sur le pilotatge, la navigation, la consommation de carburant, etc. Il présent sur plusieurs appareils (Avions de ligne, hélicoptère..). Pour en savoir plus, voici le `lien <https://fr.wikipedia.org/wiki/Fichier:CP_MCDU.jpg>`_.
 
 Deux fichiers importants sont utilisés pour le MCDU, `MCDU_Descriptor <https://github.com/CalixteManaud/Stage-Vinci-Areo/blob/main/Python/MCDU_descriptor.py>`_, qui fait d'office de nous donner les informations entrées et le `test_MCDU_input <https://github.com/CalixteManaud/Stage-Vinci-Areo/blob/main/Python/test_MCDU_input.py>`_, qui permet de nous qu'elle bouton est appuyé depuis l'ordinateur. Voici un extrait de ce qui sort lors d'une touche appuyé::
     
