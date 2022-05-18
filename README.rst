@@ -23,12 +23,34 @@ Exemple::
    FCU 
    OVERHEAD PANEL 
    PEDESTAL...
+   
+Information importante
+^^^^^^^^^^^^^^^^^^^^^^
+
+Tout d'abord, pour lire/écrire un usb, il nous faut une bibliothèques qui nous permet de faire cela, nous avons pris donc la bibliothèque 'libusb <https://libusb.info/>`_ un choix compliqué mais à la fois important sans cette bibliothèques nous arriverons pas à travailler avec ses composants.
+
+Pour inclure la bibliothèques voic le procédés:
+
+.. code-block:: python
+    
+    import sys
+    import usb.core
+    import usb.util
+
+
+
+Pour éxecuter un fichier python depuis le terminal (linux):
+
+.. code::
+    
+    sudo python file.py
+    
 
 Description d'un composant
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Chaque pièces du cokpit dés qu'li est branché sur un ordinateur doit être anaylsé, lire et écrire. Pour ce faire nous devons tout d'abord avoir sa ``description complète`` de cette pièce, un des fichiers permet de faire ceci, `GetDescriptor <https://github.com/CalixteManaud/Stage-Vinci-Areo/blob/main/Python/getDescriptor.py>`_. Il permet tout simplement de nous donner les informations importantes sur cette pièce comme l'entrée pour lire, la sortie pour écrire...
-Voici la descriptiion du OVERHEAD PANEL::
+Voici la description du OVERHEAD PANEL::
 
    CONFIGURATION 1: 200 mA ==================================
    bLength              :    0x9 (9 bytes)
@@ -75,7 +97,7 @@ Voici la descriptiion du OVERHEAD PANEL::
        iProduct               :    0x2 Error Accessing String
        iSerialNumber          :    0x0 
        bNumConfigurations     :    0x1
-      
+
 Et le code qui permet de d'afficher la description:
 
 .. code-block:: python
@@ -88,6 +110,29 @@ Et le code qui permet de d'afficher la description:
 
     print(dev._get_full_descriptor_str())
 
+       
+Chaque composant à un ``id`` différent, nous devons le trouver pour qu'on travailler là-dessus, ``idVendor`` et ``idProduct``
+permet de savoir quel appareil appartient à chaque composant, dans chaque fichiers nous trouverons ces deux attributs ou sous forme:
+
+.. code-block:: python
+    
+    dev = usb.core.find(find_all=False, idVendor=0x4d8, idProduct=0x0072)
+
+ou sous forme:
+
+.. code-block:: python
+    
+    idVendor = 0x04d8
+    idProduct = 0x0072
+
+Parfois plusieurs composants peut être brancher sur l'ordinateur sans qu'on sache vraiment qu'elle est le véritable ``id``. Le fichier `find_devices <https://github.com/CalixteManaud/Stage-Vinci-Areo/blob/main/Python/find_devices.py>`_ nous permet de lister tout les composants branchés y compris ceux qui sont dans l'ordinateur (disque dur, souris, clavier...).
+
+.. code-block:: python
+    
+    # Liste les connexions
+    devices = list(usb.core.find(find_all=True))
+    print(devices)
+    
 MCDU
 ^^^^
 
