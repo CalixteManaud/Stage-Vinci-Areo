@@ -3,20 +3,20 @@ Partie code en python version 0.1 alpha 0
 
 .. contents::
 
-Information général
+Information générale
 -------------------
-- Code: https://github.com/CalixteManaud/Stage-Vinci-Areo/tree/main/Python
+- Code : https://github.com/CalixteManaud/Stage-Vinci-Areo/tree/main/Python
 - Wiki: https://github.com/CalixteManaud/Stage-Vinci-Areo/wiki
 
 Utilisation de python
 ---------------------
 
-Des packets sont déjà préinstallés et d'autres sont disponibles dans le site `https://www.python.org/`.
+Des paquets sont déjà préinstallés et d'autres sont disponibles dans le site `https://www.python.org/`.
 
 Les fichiers
 ------------
 
-Chaque sont différents par rapport aux autres, ils se différencient sur quel composants du cokpit qui est mise sous système.
+Chaque sont différents par rapport aux autres, ils se différencient sur quels composants du cockpit qui est mise sous système.
 Exemple:: 
 
    MCDU 
@@ -27,9 +27,9 @@ Exemple::
 Information importante
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Tout d'abord, pour lire/écrire un usb, il nous faut une bibliothèques qui nous permet de faire cela, nous avons pris donc la bibliothèque 'libusb <https://libusb.info/>`_ un choix compliqué mais à la fois important sans cette bibliothèques nous arriverons pas à travailler avec ses composants.
+Tout d'abord, pour lire/écrire un USB, il nous faut une bibliothèque qui nous permet de faire cela, nous avons pris donc la bibliothèque 'libusb <https://libusb.info/>`_ un choix compliqué mais à la fois important sans cette bibliothèques nous arriverons pas à travailler avec ses composants.
 
-Pour inclure la bibliothèques voic le procédés:
+Pour inclure la bibliothèques voici les procédés :
 
 .. code-block:: python
     
@@ -49,7 +49,7 @@ Pour éxecuter un fichier python depuis le terminal (linux):
 Description d'un composant
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Chaque pièces du cokpit dés qu'li est branché sur un ordinateur doit être anaylsé, lire et écrire. Pour ce faire nous devons tout d'abord avoir sa ``description complète`` de cette pièce, un des fichiers permet de faire ceci, `GetDescriptor <https://github.com/CalixteManaud/Stage-Vinci-Areo/blob/main/Python/getDescriptor.py>`_. Il permet tout simplement de nous donner les informations importantes sur cette pièce comme l'entrée pour lire, la sortie pour écrire...
+Chaque pièce du cockpit dès qu'il est branché sur un ordinateur doit être analysé, lire et écrire. Pour ce faire nous devons tout d'abord avoir sa ``description complète`` de cette pièce, un des fichiers permet de faire ceci, `GetDescriptor <https://github.com/CalixteManaud/Stage-Vinci-Areo/blob/main/Python/getDescriptor.py>`_. Il permet tout simplement de nous donner les informations importantes sur cette pièce comme l'entrée pour lire, la sortie pour écrire...
 Voici la description du OVERHEAD PANEL::
 
    CONFIGURATION 1: 200 mA ==================================
@@ -98,7 +98,7 @@ Voici la description du OVERHEAD PANEL::
        iSerialNumber          :    0x0 
        bNumConfigurations     :    0x1
 
-Et le code qui permet de d'afficher la description:
+Et le code qui permet de d'afficher la description :
 
 .. code-block:: python
     
@@ -112,7 +112,7 @@ Et le code qui permet de d'afficher la description:
 
        
 Chaque composant à un ``id`` différent, nous devons le trouver pour qu'on travailler là-dessus, ``idVendor`` et ``idProduct``
-permet de savoir quel appareil appartient à chaque composant, dans chaque fichiers nous trouverons ces deux attributs ou sous forme:
+Permet de savoir quel appareil appartient à chaque composant, dans chaque fichiers nous trouverons ces deux attributs ou sous forme:
 
 .. code-block:: python
     
@@ -125,7 +125,7 @@ ou sous forme:
     idVendor = 0x04d8
     idProduct = 0x0072
 
-Parfois plusieurs composants peut être brancher sur l'ordinateur sans qu'on sache vraiment qu'elle est le véritable ``id``. Le fichier `find_devices <https://github.com/CalixteManaud/Stage-Vinci-Areo/blob/main/Python/find_devices.py>`_ nous permet de lister tout les composants branchés y compris ceux qui sont dans l'ordinateur (disque dur, souris, clavier...).
+Parfois plusieurs composants peuvent être brancher sur l'ordinateur sans qu'on sache vraiment qu'elle est le véritable ``id``. Le fichier `find_devices <https://github.com/CalixteManaud/Stage-Vinci-Areo/blob/main/Python/find_devices.py>`_ nous permet de lister tous les composants branchés y compris ceux qui sont dans l'ordinateur (disque dur, souris, clavier...).
 
 .. code-block:: python
     
@@ -136,7 +136,7 @@ Parfois plusieurs composants peut être brancher sur l'ordinateur sans qu'on sac
 MCDU
 ^^^^
 
-Le ``MCDU`` permet d'aider le(s) pilote(s) pendant le vol en fournissant des renseignements sur le pilotatge, la navigation, la consommation de carburant, etc. Il présent sur plusieurs appareils (Avions de ligne, hélicoptère..). Pour en savoir plus, voici le `lien <https://fr.wikipedia.org/wiki/Fichier:CP_MCDU.jpg>`_.
+Le ``MCDU`` permet d'aider le(s) pilote(s) pendant le vol en fournissant des renseignements sur le pilotatge, la navigation, la consommation de carburant, etc. Il présent sur plusieurs appareils (Avions de ligne, hélicoptère.). Pour en savoir plus, voici le `lien <https://fr.wikipedia.org/wiki/Fichier:CP_MCDU.jpg>`_.
 
 Deux fichiers importants sont utilisés pour le MCDU, `MCDU_Descriptor <https://github.com/CalixteManaud/Stage-Vinci-Areo/blob/main/Python/MCDU_descriptor.py>`_, qui fait d'office de nous donner les informations entrées et le `test_MCDU_input <https://github.com/CalixteManaud/Stage-Vinci-Areo/blob/main/Python/test_MCDU_input.py>`_, qui permet de nous qu'elle bouton est appuyé depuis l'ordinateur. Voici un extrait de ce qui sort lors d'une touche appuyé::
     
@@ -145,7 +145,7 @@ Deux fichiers importants sont utilisés pour le MCDU, `MCDU_Descriptor <https://
     la touche SP  appuyé
     Button        relaché
     
-Pour obtenir à ce résultat, il faut convertir les données reçus par l'usb (``en binaire -> integer``), ce procéder nous pense difficile mais avec un peu de logique nous découvrons que cela est facile. Un extrait du code qui permet ce résultat:
+Pour obtenir à ce résultat, il faut convertir les données reçus par l'usb (``en binaire -> integer``), se procéder nous pense difficile mais avec un peu de logique nous découvrons que cela est facile. Un extrait du code qui permet ce résultat:
 
 .. code-block:: python
    
@@ -158,4 +158,5 @@ Pour obtenir à ce résultat, il faut convertir les données reçus par l'usb (`
         byte1 = (byte1 & -byte1)
         byte1 = 0 if byte1 == 0 else log((byte1 & -byte1), 2) + 1
         byte1 = int(byte1)
+
         
