@@ -35,3 +35,10 @@ sudo ./ComponentTester.run -v
 **V :** Active le changement de valeur du bouton sélectionné
 **Touches alphanumériques :** Si le changement de valeur est activé, détermine sa nouvelle valeur
 **Entrée :** Si le changement de valeur est activé, applique sa nouvelle valeur
+
+### Ajouter un composant
+
+**Fichier src/ComponentTester.cpp, Ligne 71-75 :** Ajouter une ligne avec les bonnes informations pour prendre en charge un autre composant
+L'ordre des lignes correspond à l'ordre de sélection avec les touches **Num1, Num2, ...**
+Une image **.png 640x480** avec le même nom que celui fourni dans la nouvelle ligne doit être ajoutée dans le dossier **res/textures**
+Reconstruire le projet
