@@ -5,7 +5,7 @@
 ### Construire le programme<br/>
 
 make<br/>
-make clean : supprimer les fichiers générés<br/>
+make clean : supprime les fichiers générés<br/>
 
 ### Exécuter le programme<br/>
 
@@ -50,7 +50,7 @@ Reconstruire le projet<br/>
 ### Construire le programme<br/>
 
 make<br/>
-make clean : supprimer les fichiers générés<br/>
+make clean : supprime les fichiers générés<br/>
 
 ### Exécuter le programme<br/>
 
