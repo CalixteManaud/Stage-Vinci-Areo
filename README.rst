@@ -208,4 +208,15 @@ Voici un extrait d'un code:
 OVERHEAD & PEDESTAL PANEL
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-OVERHEAD
+.. csv-table:: PEDESTAL PANEL
+   :header: "IdVendor", "IdProduct", "Nom"
+   :widths: 15, 10, 30
+    
+   "0x04d8", "0x0093", "RMP 2"
+   "0x04d8", "0x0096", "ACP 2"
+   "0x04d8", "0x0098", "SWITCHING"
+   "0x04d8", "0x0091", "TCAS CONTROL PANEL"
+   "0x04d8", "0x0092", "RMP 1"
+   "0x04d8", "0x0099", "Spoilers, flaps, rud trim, parking brake"
+   "0x04d8", "0x0095", "ACP 1"
+   "0x04d8", "0x0080", "TRUST LEVERS (button)"
