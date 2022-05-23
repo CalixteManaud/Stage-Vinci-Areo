@@ -52,7 +52,7 @@ int main(int argc, char* argv[])
 		osstr << std::hex << device_descriptor.idProduct;
 		std::string hexProduct = osstr.str();
 
-		if (hexVendor == "4d8" && hexProduct == "71")
+		if (hexVendor == idVendor && hexProduct == idProduct)
 		{
 			std::cout << "Device found" << std::endl;
 			device = devices[i];
@@ -73,7 +73,7 @@ int main(int argc, char* argv[])
     if (error != 0)
         std::cout << libusb_strerror(error) << std::endl;
 
-    if (device_handle)
+    if (!device_handle)
     {
         std::cout << "Failed to open device" << std::endl;
         return 0;
