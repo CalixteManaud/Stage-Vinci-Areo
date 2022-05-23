@@ -7,6 +7,7 @@ Information générale
 -------------------
 - Code : https://github.com/CalixteManaud/Stage-Vinci-Areo/tree/main/Python
 - Wiki: https://github.com/CalixteManaud/Stage-Vinci-Areo/wiki
+- Code (c++) : https://github.com/CalixteManaud/Stage-Vinci-Areo/tree/Yvan
 
 Utilisation de python
 ---------------------
@@ -27,7 +28,7 @@ Exemple::
 Information importante
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Tout d'abord, pour lire/écrire un USB, il nous faut une bibliothèque qui nous permet de faire cela, nous avons pris donc la bibliothèque 'libusb <https://libusb.info/>`_ un choix compliqué mais à la fois important sans cette bibliothèques nous arriverons pas à travailler avec ses composants.
+Tout d'abord, pour lire/écrire un USB, il nous faut une bibliothèque qui nous permet de faire cela, nous avons pris donc la bibliothèque `libusb <https://libusb.info/>`_ un choix compliqué mais à la fois important sans cette bibliothèques nous arriverons pas à travailler avec ses composants.
 
 Pour inclure la bibliothèques voici les procédés :
 
