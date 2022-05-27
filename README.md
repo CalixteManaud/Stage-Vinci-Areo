@@ -1,5 +1,5 @@
 
-# ComponentTester
+# Programmes de test des composants
 
 ## Guide pratique
 
