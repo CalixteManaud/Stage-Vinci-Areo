@@ -44,11 +44,11 @@ L'utilisation de ces deux programmes est détaillée dans le guide technique<br/
 
 ### Fermeture des programmes
 
-**ComponentTester**
+**ComponentTester**<br/>
 Lorsque la fenêtre est ouverte et sélectionnée, la touche **Echap** ferme le programme<br/>
 *La fenêtre peut également être fermée avec la croix*<br/>
 
-**ManualTester**
+**ManualTester**<br/>
 Le programme se ferme après que **nbInput** codes ont été reçus<br/>
 *Le programme peut être fermé de force avec **Ctrl + C** dans le terminal*<br/>
 
@@ -59,9 +59,9 @@ Débrancher le Raspberry Pi<br/>
 #### Déplacement dans le terminal
 
 Pour se déplacer dans le terminal, utiliser les commandes suivantes :<br/>
-- **cd ~:** Se déplace dans le dossier utilisateur (dossier par défaut à l'ouverture du terminal)<br/>
-- **cd /:** Se déplace à la racine de l'ordinateur<br/>
-- **cd ..:** Se déplace d'un dossier en arrière<br/>
+- **cd ~ :** Se déplace dans le dossier utilisateur (dossier par défaut à l'ouverture du terminal)<br/>
+- **cd / :** Se déplace à la racine de l'ordinateur<br/>
+- **cd .. :** Se déplace d'un dossier en arrière<br/>
 
 La touche tab permet de compléter le nom du dossier / fichier et gagner du temps<br/>
 Si plusieurs dossiers / fichiers commence par les mêmes lettres, appuyer une seconde fois sur tab pour les afficher<br/>
