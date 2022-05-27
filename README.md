@@ -57,9 +57,9 @@ Débrancher le Raspberry Pi<br/>
 #### Déplacement dans le terminal
 
 Pour se déplacer dans le terminal, utiliser les commandes suivantes :<br/>
-- ** cd ~:** Se déplace dans le dossier utilisateur (dossier par défaut à l'ouverture du terminal)<br/>
-- ** cd /:** Se déplace à la racine de l'ordinateur<br/>
-- ** cd ..:** Se déplace d'un dossier en arrière<br/>
+- **cd ~:** Se déplace dans le dossier utilisateur (dossier par défaut à l'ouverture du terminal)<br/>
+- **cd /:** Se déplace à la racine de l'ordinateur<br/>
+- **cd ..:** Se déplace d'un dossier en arrière<br/>
 La touche tab permet de compléter le nom du dossier / fichier et gagner du temps<br/>
 Si plusieurs dossiers / fichiers commence par les mêmes lettres, appuyer une seconde fois sur tab pour les afficher<br/>
 Il est possible de se déplacer de plusieurs dossiers à la fois (ex: **cd Documents/ComponentTester**)<br/>
