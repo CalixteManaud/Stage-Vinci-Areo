@@ -74,7 +74,7 @@ Il est possible de se déplacer de plusieurs dossiers à la fois (ex: **cd Docum
 
 ### ComponentTester
 
-### Répertoire du projet : ~/Documents/ComponentTester
+Répertoire du projet : ~/Documents/ComponentTester<br/>
 
 ### Construire le programme
 
@@ -121,7 +121,7 @@ Reconstruire le projet
 
 ### ManualTester
 
-### Répertoire du projet : ~/Documents/ManualTester
+Répertoire du projet : ~/Documents/ManualTester<br/>
 
 ### Construire le programme
 
