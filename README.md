@@ -1,7 +1,7 @@
 
 # Programmes de test des composants
 
-## Guide pratique
+# Guide pratique
 
 ### Branchements
 
@@ -70,9 +70,9 @@ Il est possible de se déplacer de plusieurs dossiers à la fois (ex: **cd Docum
 **ls :** Affiche les dossiers / fichiers dans le répertoire actuel<br/>
 **Ctrl + L :** Efface le terminal<br/>
 
-## Guide technique
+# Guide technique
 
-### ComponentTester
+## ComponentTester
 
 Répertoire du projet : ~/Documents/ComponentTester<br/>
 
@@ -119,7 +119,7 @@ L'ordre des lignes correspond à l'ordre de sélection avec les touches **Num1, 
 Une image **.png 640x480** avec le même nom que celui fourni dans la nouvelle ligne doit être ajoutée dans le dossier **res/textures**<br/>
 Reconstruire le projet
 
-### ManualTester
+## ManualTester
 
 Répertoire du projet : ~/Documents/ManualTester<br/>
 
