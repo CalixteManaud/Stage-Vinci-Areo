@@ -16,13 +16,13 @@
 
 ### Lancement des programmes
 
-Une fois branché, le Raspberry Pi s'allume, si ce n'est pas le cas, vérifier que l'écran est allumé ou refaire le branchement<br/>
-Une fois le bureau affiché, ouvrir un terminal avec **Ctrl + Alt + T** ou en cliquant sur l'icone du terminal en haut de l'écran<br/>
-Une fois le terminal ouvert, exécuter la commande suivante : **cd Documents/Drive**<br/>
-Selon le programme désiré, exécuter la commande **cd ComponentTester** ou **cd ManualTester**<br/>
+- Une fois branché, le Raspberry Pi s'allume, si ce n'est pas le cas, vérifier que l'écran est allumé ou refaire le branchement<br/>
+- Une fois le bureau affiché, ouvrir un terminal avec **Ctrl + Alt + T** ou en cliquant sur l'icone du terminal en haut de l'écran<br/>
+- Une fois le terminal ouvert, exécuter la commande suivante : **cd Documents/Drive**<br/>
+- Selon le programme désiré, exécuter la commande **cd ComponentTester** ou **cd ManualTester**<br/>
 *ComponentTester permet de tester directement les composants du simulateur*<br/>
 *ManualTester permet de tester un périphérique USB choisi*<br/>
-Une fois dans le répertoire du programme, exécuter la commande **make**<br/>
+- Une fois dans le répertoire du programme, exécuter la commande **make**<br/>
 *Cette étape n'est nécessaire qu'en l'absence du fichier d'extension **.run** ou après la modification du programme*<br/>
 
 **ComponentTester**
