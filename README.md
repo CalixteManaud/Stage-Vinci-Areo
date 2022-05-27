@@ -17,15 +17,11 @@
 ### Lancement des programmes
 
 Une fois branché, le Raspberry Pi s'allume, si ce n'est pas le cas, vérifier que l'écran est allumé ou refaire le branchement
-
 Une fois le bureau affiché, ouvrir un terminal avec **Ctrl + Alt + T** ou en cliquant sur l'icone du terminal en haut de l'écran
-
 Une fois le terminal ouvert, exécuter la commande suivante : **cd Documents/Drive**
-
 Selon le programme désiré, exécuter la commande **cd ComponentTester** ou **cd ManualTester**
 *ComponentTester permet de tester directement les composants du simulateur*
 *ManualTester permet de tester un périphérique USB choisi*
-
 Une fois dans le répertoire du programme, exécuter la commande **make**
 *Cette étape n'est nécessaire qu'en l'absence du fichier d'extension **.run** ou après la modification du programme*
 
@@ -86,23 +82,23 @@ sudo ./ComponentTester.run -v
 
 **Mode édition :**
 
-**A :** Crée un bouton
-**R :** Supprime le bouton sélectionné
-**Clic gauche :** Sélectionne le bouton pointé
-**Maintien clic gauche + déplacement souris :** Déplace le bouton pointé
-**X :** Augmente la taille horizontale du bouton sélectionné
-**C :** Réduit la taille horizontale du bouton sélectionné
-**Y :** Augmente la taille verticale du bouton sélectionné
-**U :** Réduit la taille verticale du bouton sélectionné
-**V :** Active le changement de valeur du bouton sélectionné
-**Touches alphanumériques :** Si le changement de valeur est activé, détermine sa nouvelle valeur
-**Entrée :** Si le changement de valeur est activé, applique sa nouvelle valeur
+**A :** Crée un bouton<br/>
+**R :** Supprime le bouton sélectionné<br/>
+**Clic gauche :** Sélectionne le bouton pointé<br/>
+**Maintien clic gauche + déplacement souris :** Déplace le bouton pointé<br/>
+**X :** Augmente la taille horizontale du bouton sélectionné<br/>
+**C :** Réduit la taille horizontale du bouton sélectionné<br/>
+**Y :** Augmente la taille verticale du bouton sélectionné<br/>
+**U :** Réduit la taille verticale du bouton sélectionné<br/>
+**V :** Active le changement de valeur du bouton sélectionné<br/>
+**Touches alphanumériques :** Si le changement de valeur est activé, détermine sa nouvelle valeur<br/>
+**Entrée :** Si le changement de valeur est activé, applique sa nouvelle valeur<br/>
 
 ### Ajouter un composant
 
-**Fichier src/ComponentTester.cpp, Ligne 71-75 :** Ajouter une ligne avec les bonnes informations pour prendre en charge un autre composant
-L'ordre des lignes correspond à l'ordre de sélection avec les touches **Num1, Num2, ...**
-Une image **.png 640x480** avec le même nom que celui fourni dans la nouvelle ligne doit être ajoutée dans le dossier **res/textures**
+**Fichier src/ComponentTester.cpp, Ligne 71-75 :** Ajouter une ligne avec les bonnes informations pour prendre en charge un autre composant<br/>
+L'ordre des lignes correspond à l'ordre de sélection avec les touches **Num1, Num2, ...**<br/>
+Une image **.png 640x480** avec le même nom que celui fourni dans la nouvelle ligne doit être ajoutée dans le dossier **res/textures**<br/>
 Reconstruire le projet
 
 # ManualTester
@@ -118,12 +114,12 @@ make clean : supprime les fichiers générés
 
 sudo ./ManualTester.run [idVendor] [idProduct] [nbInput]
 
-**sudo :** libusb requiert les droits d'administrateur
-**idVendor :** Id vendor du périphérique
-**idproduct :** Id product du périphérique
-**nbInput :** Nombre de codes à recevoir avant la fermeture du programme
-*idVendor et idProduct peuvent être trouvées sous la forme xxxx:xxxx avec la commande **lsusb***
-*Il faut omettre chaque 0 superflu (exemple: 04D8 -> 4D8, 0050 -> 50)*
+**sudo :** libusb requiert les droits d'administrateur<br/>
+**idVendor :** Id vendor du périphérique<br/><br/>
+**idproduct :** Id product du périphérique<br/>
+**nbInput :** Nombre de codes à recevoir avant la fermeture du programme<br/>
+*idVendor et idProduct peuvent être trouvées sous la forme xxxx:xxxx avec la commande **lsusb***<br/>
+*Il faut omettre chaque 0 superflu (exemple: 04D8 -> 4D8, 0050 -> 50)*<br/>
 
 ### Utiliser le programme
 
