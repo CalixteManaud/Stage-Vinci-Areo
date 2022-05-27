@@ -16,43 +16,43 @@
 
 ### Lancement des programmes
 
-Une fois branché, le Raspberry Pi s'allume, si ce n'est pas le cas, vérifier que l'écran est allumé ou refaire le branchement
-Une fois le bureau affiché, ouvrir un terminal avec **Ctrl + Alt + T** ou en cliquant sur l'icone du terminal en haut de l'écran
-Une fois le terminal ouvert, exécuter la commande suivante : **cd Documents/Drive**
-Selon le programme désiré, exécuter la commande **cd ComponentTester** ou **cd ManualTester**
-*ComponentTester permet de tester directement les composants du simulateur*
-*ManualTester permet de tester un périphérique USB choisi*
-Une fois dans le répertoire du programme, exécuter la commande **make**
-*Cette étape n'est nécessaire qu'en l'absence du fichier d'extension **.run** ou après la modification du programme*
+Une fois branché, le Raspberry Pi s'allume, si ce n'est pas le cas, vérifier que l'écran est allumé ou refaire le branchement<br/>
+Une fois le bureau affiché, ouvrir un terminal avec **Ctrl + Alt + T** ou en cliquant sur l'icone du terminal en haut de l'écran<br/>
+Une fois le terminal ouvert, exécuter la commande suivante : **cd Documents/Drive**<br/>
+Selon le programme désiré, exécuter la commande **cd ComponentTester** ou **cd ManualTester**<br/>
+*ComponentTester permet de tester directement les composants du simulateur*<br/>
+*ManualTester permet de tester un périphérique USB choisi*<br/>
+Une fois dans le répertoire du programme, exécuter la commande **make**<br/>
+*Cette étape n'est nécessaire qu'en l'absence du fichier d'extension **.run** ou après la modification du programme*<br/>
 
 **ComponentTester**
-Exécuter la commande **sudo ./ComponentTester.run -v**
-***-v** n'est pas obligatoire et permet d'afficher des informations supplémentaires dans la console*
+Exécuter la commande **sudo ./ComponentTester.run -v**<br/>
+***-v** n'est pas obligatoire et permet d'afficher des informations supplémentaires dans la console*<br/>
 
 **ManualTester**
-Exécuter la commande **sudo ./ManualTester.run idVendor idProduct nbInput**
-*Remplacer **idVendor** et **idProduct** par les valeurs correspondantes*
-*idVendor et idProduct peuvent être trouvées sous la forme xxxx:xxxx avec la commande **lsusb***
-*Il faut omettre chaque 0 superflu (exemple: 04D8 -> 4D8, 0050 -> 50)*
-*Remplacer **nbInput** par le nombre de codes à recevoir avant la fermeture du programme*
+Exécuter la commande **sudo ./ManualTester.run idVendor idProduct nbInput**<br/>
+*Remplacer **idVendor** et **idProduct** par les valeurs correspondantes*<br/>
+*idVendor et idProduct peuvent être trouvées sous la forme xxxx:xxxx avec la commande **lsusb***<br/>
+*Il faut omettre chaque 0 superflu (exemple: 04D8 -> 4D8, 0050 -> 50)*<br/>
+*Remplacer **nbInput** par le nombre de codes à recevoir avant la fermeture du programme*<br/>
 
 ### Utilisation des programmes
 
-L'utilisation de ces deux programmes est détaillée dans le guide technique
+L'utilisation de ces deux programmes est détaillée dans le guide technique<br/>
 
 ### Fermeture des programmes
 
 **ComponentTester**
-Lorsque la fenêtre est ouverte et sélectionnée, la touche **Echap** ferme le programme
-*La fenêtre peut également être fermée avec la croix*
+Lorsque la fenêtre est ouverte et sélectionnée, la touche **Echap** ferme le programme<br/>
+*La fenêtre peut également être fermée avec la croix*<br/>
 
 **ManualTester**
-Le programme se ferme après que **nbInput** codes ont été reçus
-*Le programme peut être fermé de force avec **Ctrl + C** dans le terminal*
+Le programme se ferme après que **nbInput** codes ont été reçus<br/>
+*Le programme peut être fermé de force avec **Ctrl + C** dans le terminal*<br/>
 
-Fermer le terminal avec **Ctrl + D** ou en exécutant la commande **exit**
-Eteindre le Raspberry Pi avec la barre des tâches en haut de l'écran
-Débrancher le Raspberry Pi
+Fermer le terminal avec **Ctrl + D** ou en exécutant la commande **exit**<br/>
+Eteindre le Raspberry Pi avec la barre des tâches en haut de l'écran<br/>
+Débrancher le Raspberry Pi<br/>
 
 ## Guide technique
 
@@ -60,25 +60,25 @@ Débrancher le Raspberry Pi
 
 ### Construire le programme
 
-make
-make clean : supprime les fichiers générés
+make<br/>
+make clean : supprime les fichiers générés<br/>
 
 ### Exécuter le programme
 
-sudo ./ComponentTester.run -v
+sudo ./ComponentTester.run -v<br/>
 
-**sudo :** libusb requiert les droits d'administrateur
-**-v   :** affiche les informations de débogage
+**sudo :** libusb requiert les droits d'administrateur<br/>
+**-v   :** affiche les informations de débogage<br/>
 
 ### Utiliser le programme
 
-**Num0, Num1, ..., Num4 :** sélectionne le composant
-**E :** bascule entre le mode test et le mode édition (utile uniquement pour le MCDU)
+**Num0, Num1, ..., Num4 :** sélectionne le composant<br/>
+**E :** bascule entre le mode test et le mode édition (utile uniquement pour le MCDU)<br/>
 
 **Mode test :**
 
-**Clic gauche :** Clique sur le bouton pointé, le programme réagit
-**Clic sur une touche du composant sélectionné (physique) :** le programme affiche le code reçu
+**Clic gauche :** Clique sur le bouton pointé, le programme réagit<br/>
+**Clic sur une touche du composant sélectionné (physique) :** le programme affiche le code reçu<br/>
 
 **Mode édition :**
 
@@ -107,12 +107,12 @@ Reconstruire le projet
 
 ### Construire le programme
 
-make
-make clean : supprime les fichiers générés
+make<br/>
+make clean : supprime les fichiers générés<br/>
 
 ### Exécuter le programme
 
-sudo ./ManualTester.run [idVendor] [idProduct] [nbInput]
+sudo ./ManualTester.run [idVendor] [idProduct] [nbInput]<br/>
 
 **sudo :** libusb requiert les droits d'administrateur<br/>
 **idVendor :** Id vendor du périphérique<br/><br/>
@@ -123,4 +123,4 @@ sudo ./ManualTester.run [idVendor] [idProduct] [nbInput]
 
 ### Utiliser le programme
 
-**Appui sur une touche du périphérique :** Affiche le code associé à la touche
+**Appui sur une touche du périphérique :** Affiche le code associé à la touche<br/>
