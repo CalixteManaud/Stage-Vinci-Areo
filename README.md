@@ -14,6 +14,8 @@
 - Câble d'alimentation de l'écran
 - Câble HDMI
 
+Aucune connexion internet n'est nécessaire
+
 ### Lancement des programmes
 
 - Une fois branché, le Raspberry Pi s'allume, si ce n'est pas le cas, vérifier que l'écran est allumé ou refaire le branchement<br/>
