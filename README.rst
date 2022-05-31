@@ -31,6 +31,15 @@ Information importante
 
 Tout d'abord, pour lire/écrire un USB, il nous faut une bibliothèque qui nous permet de faire cela, nous avons pris donc la bibliothèque `libusb <https://libusb.info/>`_ un choix compliqué mais à la fois important sans cette bibliothèques nous arriverons pas à travailler avec ses composants.
 
+Voici quelques commandes à faire avant de commancer :
+
+.. code::
+
+    sudo apt install -y python3-pip
+    pip3 install package-name
+    sudo apt install build-essential libssl-dev libdffi-dev python3-dev
+   
+
 Pour inclure la bibliothèques voici les procédés :
 
 .. code-block:: python
