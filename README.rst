@@ -71,7 +71,7 @@ Connexion internet est requis et tapez cette commande pour mettre à jour la Ras
 
 - Une fois tous branchés, le Raspberry Pi s'allume, si cela marche pas, vérifier que l'écran soit est allumé ou de voir s'il y a un faux contact.
 
-- Une fois entré, ouvrir un terminal ``CRTL + ALT + T`` ou cliquer sur l'icône du terminal depuis le menu. Une fois le terminal ouvert, chercher le dossier en faisant ``le chemin à faire``.
+- Une fois entré, ouvrir un terminal ``CRTL + ALT + T`` ou cliquer sur l'icône du terminal depuis le menu. Une fois le terminal ouvert, chercher le dossier en faisant ``cd Documents/Stage-Vinci-Areo/Python``.
 
 - Selon le programme désiré, exécuter comme précédemment dit : 
 
