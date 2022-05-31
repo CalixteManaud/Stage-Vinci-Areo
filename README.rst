@@ -165,7 +165,7 @@ Permet de savoir quel appareil appartient à chaque composant, dans chaque fichi
 
 .. code-block:: python
     
-    dev = usb.core.find(find_all=False, idVendor=0x4d8, idProduct=0x0072)
+    dev = usb.core.find(find_all=False, idVendor=0x04d8, idProduct=0x0072)
 
 ou sous forme:
 
