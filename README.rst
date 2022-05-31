@@ -13,7 +13,7 @@ Information générale
 Utilisation de python
 ---------------------
 
-Des paquets sont déjà préinstallés et d'autres sont disponibles dans le site `https://www.python.org/`.
+Des paquets sont déjà préinstallés et d'autres sont disponibles dans le site `Python <https://www.python.org/>`_.
 
 Les fichiers
 ------------
