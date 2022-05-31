@@ -33,7 +33,7 @@ Tout d'abord, pour lire/écrire un USB, il nous faut une bibliothèque qui nous 
 
 Voici quelques commandes à faire avant de commancer :
 
-.. code-block:: Bash shell scripts
+.. code-block:: bash
 
     sudo apt install -y python3-pip
     pip3 install package-name
@@ -52,7 +52,7 @@ Pour inclure la bibliothèques voici les procédés :
 
 Pour éxecuter un fichier python depuis le terminal (linux):
 
-.. code_block:: Bash shell scripts
+.. code-block:: bash
     
     sudo python file.py
     
@@ -70,7 +70,7 @@ Guide pratique
 
 Connexion internet est requis et tapez cette commande pour mettre à jour la Raspberry Pi: 
 
-.. code-block:: Bash shell scripts
+.. code-block:: bash
    
     sudo apt-get update && sudo apt upgrade -y
     sudo apt-get dist-upgrade
