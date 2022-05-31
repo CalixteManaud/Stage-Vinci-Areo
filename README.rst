@@ -1,5 +1,5 @@
 *****************************************
-Partie code en python version 0.1 alpha 0
+Partie code en python version 0.1
 *****************************************
 
 .. contents::
