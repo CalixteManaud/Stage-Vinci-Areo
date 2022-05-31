@@ -1,5 +1,6 @@
+*****************************************
 Partie code en python version 0.1 alpha 0
-=====================================
+*****************************************
 
 .. contents::
 
@@ -58,8 +59,14 @@ Guide pratique
 - Ecran
 - Câble HDMI
 
-Aucune connexion internet est requis
+Connexion internet est requis et tapez cette commande pour mettre à jour la Raspberry Pi: 
 
+.. code-block:: shell
+   
+    sudo apt-get update && sudo apt upgrade -y
+    sudo apt-get dist-upgrade
+
+    
 **Lancement des programmes**
 
 - Une fois tous branchés, le Raspberry Pi s'allume, si cela marche pas, vérifier que l'écran soit est allumé ou de voir s'il y a un faux contact.
