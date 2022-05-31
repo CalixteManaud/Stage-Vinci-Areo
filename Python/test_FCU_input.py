@@ -29,8 +29,6 @@ while True:
     try:
         print(inputsData)
         data = dev.read(0x82, 4, 5000)
-        # print(data)
-        # print(bin(data[1]))
         print(bin(data[2]))
         print(bin(data[3]))
 
@@ -60,12 +58,12 @@ while True:
                 continue;
             if old[i] == "1" and new[i] == "0":
                 # can send ON
-                code = FCU.codeOfInput([groupe, 0, 7 - i])
+                code = FCU_descriptor.codeOfInput([groupe, 0, 7 - i])
                 print(code)
                 print("on")
             if old[i] == "0" and new[i] == "1":
                 # can send OFF
-                code = FCU.codeOfInput([groupe, 0, 7 - i])
+                code = FCU_descriptor.codeOfInput([groupe, 0, 7 - i])
                 print(code)
                 print("off")
 
@@ -81,12 +79,12 @@ while True:
                 continue
             if old[i] == "1" and new[i] == "0":
                 # can send ON
-                code = FCU.codeOfInput([groupe, 1, 7 - i])
+                code = FCU_descriptor.codeOfInput([groupe, 1, 7 - i])
                 print(code)
                 print("on")
             if old[i] == "0" and new[i] == "1":
                 # can send OFF
-                code = FCU.codeOfInput([groupe, 1, 7 - i])
+                code = FCU_descriptor.codeOfInput([groupe, 1, 7 - i])
                 print(code)
                 print("off")
 

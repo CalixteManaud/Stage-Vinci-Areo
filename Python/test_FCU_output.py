@@ -11,15 +11,10 @@ dev = usb.core.find(find_all=False, idVendor=0x04d8, idProduct=0x0050)
 
 interface = 0
 
-outs = []
-outs.append([0x37, 0x40, 0x00, 0x00])
-outs.append([0x37, 0x42, 0x00, 0x00])
-outs.append([0x37, 0x44, 0x4A, 0xBD])
-outs.append([0x37, 0x46, 0x00, 0x00])
-outs.append([0x37, 0x48, 0x00, 0x00])
-outs.append([0x37, 0x4A, 0x00, 0x80])
+outs = [[0x37, 0x40, 0x00, 0x00], [0x37, 0x42, 0x00, 0x00], [0x37, 0x44, 0x4A, 0xBD], [0x37, 0x46, 0x00, 0x00],
+        [0x37, 0x48, 0x00, 0x00], [0x37, 0x4A, 0x00, 0x80]]
 
-out = FCU.outputsOfCode(326)
+out = FCU_descriptor.outputsOfCode(326)
 digits = [0x39, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 if dev.is_kernel_driver_active(interface) is True:
@@ -41,7 +36,7 @@ print(" ")
 
 info = [313, 315, 316, 317, 318, 319, 320, 321, 339]
 
-digits = FCU.digitsOfCode(-2, 230, digits)
+digits = FCU_descriptor.digitsOfCode(-2, 230, digits)
 
 
 def test(on):
@@ -58,13 +53,13 @@ def test(on):
             code += 1
             continue
 
-        out = FCU.outputsOfCode(code)
+        out = FCU_descriptor.outputsOfCode(code)
         code += 1
 
         for j in range(len(out)):
             byte = 2 ** out[j][2]
 
-            if on == True:
+            if on:
                 if out[j][1] == 0:
                     outs[out[j][0]][2] |= byte
                 else:
@@ -99,17 +94,17 @@ while True:
         dev.write(0x1, outs[3])
         dev.write(0x1, outs[4])
         dev.write(0x1, outs[5])
-        # arr = [0x39, d0, d8, dS, 0, d1, d9, dt, 0, d2, do, dd, 0, d3, dm, 0, 0, d4, dm, dS, 0, d5, dm, dt, 0, d6, dm, dd, 0, d7, dm, 0, 0]
-        # dev.write(0x1, arr)
-        digits = FCU.digitsOfCode(-1, 123, digits)
-        digits = FCU.digitsOfCode(-2, 234, digits)
-        digits = FCU.digitsOfCode(-3, 34567, digits)
-        digits = FCU.digitsOfCode(-4, 45678, digits)
-        digits = FCU.digitsOfCode(-5, 5678, digits)
-        digits = FCU.digitsOfCode(-6, 6789, digits)
+        # arr = [0x39, d0, d8, dS, 0, d1, d9, dt, 0, d2, do, dd, 0, d3, dm, 0, 0, d4, dm, dS, 0, d5, dm, dt, 0, d6,
+        # dm, dd, 0, d7, dm, 0, 0] dev.write(0x1, arr)
+        digits = FCU_descriptor.digitsOfCode(-1, 123, digits)
+        digits = FCU_descriptor.digitsOfCode(-2, 234, digits)
+        digits = FCU_descriptor.digitsOfCode(-3, 34567, digits)
+        digits = FCU_descriptor.digitsOfCode(-4, 45678, digits)
+        digits = FCU_descriptor.digitsOfCode(-5, 5678, digits)
+        digits = FCU_descriptor.digitsOfCode(-6, 6789, digits)
 
         dev.write(0x1, str(bytearray(digits)))
-        out = FCU.outputsOfCode(int(input('Entrer une valeur : ')))
+        out = FCU_descriptor.outputsOfCode(int(input('Entrer une valeur : ')))
         val = int(input('Entre 1 ou 0: '))
 
         for i in range(len(out)):

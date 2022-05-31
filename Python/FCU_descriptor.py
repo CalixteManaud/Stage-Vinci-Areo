@@ -11,92 +11,17 @@ codeIN.append(378)
 codeIN.append(379)
 
 # Données reçues par le module : [groupe, byte1, byte2]
-inputs = []
+inputs = [[1, 1, 4], [1, 1, 3], [1, 1, 0], [0, 1, 5], [0, 1, 7], [0, 1, 6], [0, 1, 4], [0, 1, 2], [0, 0, 7], [0, 0, 6],
+          [0, 0, 5], [0, 1, 1], [0, 1, 0], [1, 1, 2], [1, 1, 1], [2, 0, 7], [2, 0, 6], [1, 0, 5], [1, 0, 4], [0, 0, 0],
+          [0, 0, 1], [0, 0, 2], [0, 0, 3], [0, 0, 4], [1, 1, 5], [1, 1, 6], [1, 0, 7], [1, 1, 7], [5, 1, 4], [5, 1, 5],
+          [4, 1, 1], [4, 0, 7], [4, 0, 6], [4, 0, 5], [4, 1, 0], [4, 1, 2], [4, 1, 5], [4, 1, 7], [4, 1, 6], [4, 1, 4],
+          [4, 1, 3], [3, 0, 2], [3, 0, 3], [5, 0, 1], [5, 0, 2], [5, 0, 5], [5, 0, 4], [4, 0, 4], [4, 0, 3], [4, 0, 2],
+          [4, 0, 1], [4, 0, 0], [5, 1, 2], [5, 1, 3], [5, 0, 7], [5, 1, 1], [2, 0, 1], [3, 1, 1], [2, 0, 4], [2, 0, 5],
+          [2, 0, 2], [2, 0, 3], [3, 0, 0], [3, 0, 1], [2, 1, 2], [2, 1, 3], [2, 1, 6], [2, 1, 7], [3, 1, 6], [3, 1, 7],
+          [3, 0, 7], [3, 0, 6], [3, 1, 3], [2, 1, 0], [2, 1, 4], [3, 1, 4], [3, 0, 4], [2, 1, 1], [2, 1, 5], [3, 1, 5],
+          [3, 0, 5], [3, 1, 2], [2, 0, 0]]
 
 # inputs.append([groupe, byte, bit])
-inputs.append([1, 1, 4])  # CPT_FD
-inputs.append([1, 1, 3])  # CPT_LS
-inputs.append([1, 1, 0])  # CPT_MODE_ILS
-inputs.append([0, 1, 5])  # CPT_MODE_VOR
-inputs.append([0, 1, 7])  # CPT_MODE_NAV
-inputs.append([0, 1, 6])  # CPT_MODE_ARC
-inputs.append([0, 1, 4])  # CPT_MODE_PLAN
-inputs.append([0, 1, 2])  # CPT_RANGE_10
-inputs.append([0, 0, 7])  # CPT_RANGE_20
-inputs.append([0, 0, 6])  # CPT_RANGE_40
-inputs.append([0, 0, 5])  # CPT_RANGE_80
-inputs.append([0, 1, 1])  # CPT_RANGE_160
-inputs.append([0, 1, 0])  # CPT_RANGE_320
-inputs.append([1, 1, 2])  # CPT_ADF1
-inputs.append([1, 1, 1])  # CPT_VOR1
-inputs.append([2, 0, 7])  # CPT_ADF2
-inputs.append([2, 0, 6])  # CPT_VOR2
-inputs.append([1, 0, 5])  # CPT_inHg
-inputs.append([1, 0, 4])  # CPT_mb
-inputs.append([0, 0, 0])  # CPT_CSTR
-inputs.append([0, 0, 1])  # CPT_WPT
-inputs.append([0, 0, 2])  # CPT_VORDME
-inputs.append([0, 0, 3])  # CPT_NDB
-inputs.append([0, 0, 4])  # CPT_ARPT
-inputs.append([1, 1, 5])  # CPT_QNHinc ?
-inputs.append([1, 1, 6])  # CPT_QNHdec ?
-inputs.append([1, 0, 7])  # CPT_QNHpull
-inputs.append([1, 1, 7])  # CPT_QNHpush
-inputs.append([5, 1, 4])  # FO_FD
-inputs.append([5, 1, 5])  # FO_LS
-inputs.append([4, 1, 1])  # FO_MODE_ILS
-inputs.append([4, 0, 7])  # FO_MODE_VOR
-inputs.append([4, 0, 6])  # FO_MODE_NAV
-inputs.append([4, 0, 5])  # FO_MODE_ARC
-inputs.append([4, 1, 0])  # FO_MODE_PLAN
-inputs.append([4, 1, 2])  # FO_RANGE_10
-inputs.append([4, 1, 5])  # FO_RANGE_20
-inputs.append([4, 1, 7])  # FO_RANGE_40
-inputs.append([4, 1, 6])  # FO_RANGE_80
-inputs.append([4, 1, 4])  # FO_RANGE_160
-inputs.append([4, 1, 3])  # FO_RANGE_320
-inputs.append([3, 0, 2])  # FO_ADF1
-inputs.append([3, 0, 3])  # FO_VOR1
-inputs.append([5, 0, 1])  # FO_ADF2
-inputs.append([5, 0, 2])  # FO_VOR2
-inputs.append([5, 0, 5])  # FO_inHg
-inputs.append([5, 0, 4])  # FO_mb
-inputs.append([4, 0, 4])  # FO_CSTR
-inputs.append([4, 0, 3])  # FO_WPT
-inputs.append([4, 0, 2])  # FO_VORDME
-inputs.append([4, 0, 1])  # FO_NDB
-inputs.append([4, 0, 0])  # FO_ARPT
-inputs.append([5, 1, 2])  # FO_QNHinc
-inputs.append([5, 1, 3])  # FO_QNHdec
-inputs.append([5, 0, 7])  # FO_QNHpull
-inputs.append([5, 1, 1])  # FO_QNHpush
-inputs.append([2, 0, 1])  # TRK_FPA
-inputs.append([3, 1, 1])  # METRICALT
-inputs.append([2, 0, 4])  # AP1
-inputs.append([2, 0, 5])  # AP2
-inputs.append([2, 0, 2])  # ATHR
-inputs.append([2, 0, 3])  # LOC
-inputs.append([3, 0, 0])  # APPR
-inputs.append([3, 0, 1])  # EXPED
-inputs.append([2, 1, 2])  # SPDpush
-inputs.append([2, 1, 3])  # SPDpull
-inputs.append([2, 1, 6])  # HDGpush
-inputs.append([2, 1, 7])  # HDGpull
-inputs.append([3, 1, 6])  # ALTpush
-inputs.append([3, 1, 7])  # ALTpull
-inputs.append([3, 0, 7])  # VSpush
-inputs.append([3, 0, 6])  # VSpull
-inputs.append([3, 1, 3])  # ALT100
-inputs.append([2, 1, 0])  # SPDinc ?
-inputs.append([2, 1, 4])  # HDGinc ?
-inputs.append([3, 1, 4])  # ALTinc ?
-inputs.append([3, 0, 4])  # VSinc ?
-inputs.append([2, 1, 1])  # SPDdec ?
-inputs.append([2, 1, 5])  # HDGdec ?
-inputs.append([3, 1, 5])  # ALTdec ?
-inputs.append([3, 0, 5])  # VSdec
-inputs.append([3, 1, 2])  # ALT1000
-inputs.append([2, 0, 0])  # SPD_MACH
 
 
 def codeOfInput(i):
