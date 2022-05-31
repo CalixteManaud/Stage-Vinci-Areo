@@ -52,7 +52,7 @@ Pour inclure la bibliothèques voici les procédés :
 
 Pour éxecuter un fichier python depuis le terminal (linux):
 
-.. code_block:: bash
+.. code_block:: Bash shell scripts
     
     sudo python file.py
     
@@ -70,7 +70,7 @@ Guide pratique
 
 Connexion internet est requis et tapez cette commande pour mettre à jour la Raspberry Pi: 
 
-.. code-block:: PowerShell
+.. code-block:: Bash shell scripts
    
     sudo apt-get update && sudo apt upgrade -y
     sudo apt-get dist-upgrade
