@@ -46,6 +46,38 @@ Pour éxecuter un fichier python depuis le terminal (linux):
     
     sudo python file.py
     
+Guide pratique
+^^^^^^^^^^^^^^
+
+Équipement nécessaire:
+
+- Raspberry Pi
+- Câble d'alimentation du Raspberry Pi + écran
+- Clavier
+- Souris
+- Ecran
+- Câble HDMI
+
+Aucune connexion internet est requis
+
+**Lancement des programmes**
+
+- Une fois tous branchés, le Raspberry Pi s'allume, si cela marche pas, vérifier que l'écran soit est allumé ou de voir s'il y a un faux contact.
+
+- Une fois entré, ouvrir un terminal ``CRTL + ALT + T`` ou cliquer sur l'icône du terminal depuis le menu. Une fois le terminal ouvert, chercher le dossier en faisant ``le chemin à faire``.
+
+- Selon le programme désiré, exécuter comme précédemment dit : 
+
+.. code-block:: shell
+
+    sudo python file.py
+    
+
+**Utilisation des fichiers**
+
+Dans tous les fichiers à l'exception du ficher `find_devices <https://github.com/CalixteManaud/Stage-Vinci-Areo/blob/main/Python/find_devices.py>`_, pour chacun des périphériques à tester vous devez remplacer ``idVendor`` et ``idProduct`` par les valeurs correspondantes à ceux trouvées dans le fichier ``find_devices``.
+
+Pour fermer le programme, il s'uffit de soit appuyer sur n'importe quel touche du clavier ou de faire ``CRTL + C`` depuis le terminal.
 
 Description d'un composant
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
