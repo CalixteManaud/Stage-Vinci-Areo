@@ -142,3 +142,32 @@ sudo ./ManualTester.run [idVendor] [idProduct] [nbInput]<br/>
 ### Utiliser le programme
 
 **Appui sur une touche du périphérique :** Affiche le code associé à la touche<br/>
+
+# Guide d'insallation
+
+Pour configurer les programmes sur un nouvel ordinateur, voici les étapes importantes :<br/>
+Le système doit être basé sur Linux et être à jour (**sudo apt update; sudo apt upgrade**)<br/>
+*Certaines commandes demandent une confirmation à l'utilisateur sous la forme [O/n] ou [Y/n] selon la langue du système, si tel est le cas, toujours entrer O (ou Y) et appuyer sur la touche Entrée*<br/>
+*Lorsque le guide indique d'exécuter une commande, celle-ci doit êtr exécutée depuis un terminal pouvant être ouvert avec **Ctrl + Alt + T** et fermé avec **Ctrl + D***<br/>
+
+**Création d'un lien symbolique vers libusb**
+
+Libusb est installée par défaut, elle est situé dans le dossier "/lib/arm-linux-gnueabihf" et le fichier se nomme "libusb-1.0.so.0.3.0"<br/>
+*Sur un ordinateur, il est possible que le dossier ait le nom "x86_64-gnu-linux", dans ce cas, remplacer le nom du dossier pour chaque commande*<br/>
+Un lien symbolique du nom de "libusb-1.0.so.0" est également présent à cet emplacement<br/>
+Pour pouvoir utiliser libusb dans la construction des programmes, il est nécessaire de créer un lien symbolique dont le nom termine par ".so"<br/>
+Dans le dossier "/lib/arm-linux-gnueabihf", exécuter la commande **sudo ln -s /lib/arm-linux-gnueabihf/libusb-1.0.so.0 /lib/arm-linux-gnueabihf/libusb-1.0.so**<br/>
+Vérifier l'existence du fichier "libusb-1.0.so" aux côtés des deux autres fichiers<br/>
+
+**Installation de la SFML**
+
+Exécuter la commande **sudo apt install libsfml-dev**<br/>
+
+**Récupération des programmes**
+
+Si les programmes sont sur une clé USB, copier les programmes dans le dossier **~/Documents** (ou autre) via l'explorateur de fichiers<br/>
+Si les programmes ne sont pas sur une clé USB, ils sont disponibles sur github à l'adresse "https://github.com/CalixteManaud/"<br/>
+Cliquer sur "Branches" permet d'accéder à la branche "main" contenant les programmes python et à la branche "Yvan" permettant d'accéder aux programmes C++<br/>
+Il est recommandé de télécharger l'intégralité du dépot à sa racine en cliquant sur le bouton vert "Code" et "Download Zip"<br/>
+Une fois le dossier téléchérgé, il faut l'extraire avec clic droit , extraire.<br/>
+Pour lancer les programmes, se référer au guide d'utilisation des programmes<br/>
