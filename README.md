@@ -117,7 +117,8 @@ sudo ./ComponentTester.run -v<br/>
 **Fichier src/ComponentTester.cpp, Ligne 71-75 :** Ajouter une ligne avec les bonnes informations pour prendre en charge un autre composant<br/>
 L'ordre des lignes correspond à l'ordre de sélection avec les touches **Num1, Num2, ...**<br/>
 Une image **.png 640x480** avec le même nom que celui fourni dans la nouvelle ligne doit être ajoutée dans le dossier **res/textures**<br/>
-Reconstruire le projet
+Reconstruire le projet<br/>
+*Si les touches Num4 et Num6 ne fonctionnent pas, modifier les ligne 20 et 22 du fichier **src/ComponentTester.cpp** en remplacant "Quote" et "Hyphen" par "Num4" et "Num6"*<br/>
 
 ## ManualTester
 
