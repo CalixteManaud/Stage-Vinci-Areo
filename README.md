@@ -3,6 +3,8 @@
 
 # Guide pratique
 
+## Utilisation sur le Raspberry Pi
+
 ### Branchements
 
 **Équipement nécessaire :**
@@ -69,6 +71,24 @@ Il est possible de se déplacer de plusieurs dossiers à la fois (ex: **cd Docum
 
 **ls :** Affiche les dossiers / fichiers dans le répertoire actuel<br/>
 **Ctrl + L :** Efface le terminal<br/>
+
+## Utilisation sur Windows
+
+Il est possible de contrôler le Raspberry Pi à distance depuis un environnement Windows, cela permet d'éviter de nombreux branchements.
+Pour ce faire, il faut :
+- Brancher l'alimentation du Raspberry Pi (et rien d'autre)
+- Allumer un ordinateur Windows
+- S'assurer si nécessaire que les deux appareils sont connectés au même réseau Wi-Fi (configurer préalablement une connexion automatique du Raspberry Pi pour éviter les branchements)
+- S'assurer si nécessaire que le SSH est activé sur le Raspberrry Pi
+- Installer le logiciel PuTTY (https://putty.org/)
+- Une fois le logiciel lancé, entrer l'adresse ip du Raspberry Pi dans la case "Host Name (or IP address)" (l'adresse peut être trouvée avec la commande **ifconfig** sur le Raspberry Pi)
+- Cliquer sur "Save" et choisir un nom (ex: Raspberry Pi)
+- De cette manière, au prochain lancement du logiciel, il suffit de cliquer sur "Raspberry Pi" et "Load"
+- Cliquer sur "Open"
+- Entrer l'identifiant "pi"
+- Entrer le mot de passe "raspberry" (les informations de connexion peuvent être configurées avec la commande **sudo raspi-config** sur le Raspberry Pi)
+
+Le Raspberry Pi est maintenant accessible depuis un environnement Windows
 
 # Guide technique
 
