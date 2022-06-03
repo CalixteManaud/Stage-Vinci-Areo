@@ -80,7 +80,7 @@ Pour ce faire, il faut :<br/>
 - Allumer un ordinateur Windows<br/>
 - S'assurer si nécessaire que les deux appareils sont connectés au même réseau Wi-Fi (configurer préalablement une connexion automatique du Raspberry Pi pour éviter les branchements)<br/>
 - S'assurer si nécessaire que le SSH est activé sur le Raspberrry Pi<br/>
-- Installer le logiciel PuTTY (https://putty.org/)<br/>
+- Installer le logiciel PuTTY sur Windows (https://putty.org/)<br/>
 - Une fois le logiciel lancé, entrer l'adresse ip du Raspberry Pi dans la case "Host Name (or IP address)" (l'adresse peut être trouvée avec la commande **ifconfig** sur le Raspberry Pi)<br/>
 - Cliquer sur "Save" et choisir un nom (ex: Raspberry Pi)<br/>
 - De cette manière, au prochain lancement du logiciel, il suffit de cliquer sur "Raspberry Pi" et "Load"<br/>
