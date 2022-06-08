@@ -190,5 +190,5 @@ Si les programmes sont sur une clé USB, copier les programmes dans le dossier *
 Si les programmes ne sont pas sur une clé USB, ils sont disponibles sur github à l'adresse "https://github.com/CalixteManaud/"<br/>
 Cliquer sur "Branches" permet d'accéder à la branche "main" contenant les programmes python et à la branche "Yvan" permettant d'accéder aux programmes C++<br/>
 Il est recommandé de télécharger l'intégralité du dépot à sa racine en cliquant sur le bouton vert "Code" et "Download Zip"<br/>
-Une fois le dossier téléchérgé, il faut l'extraire avec clic droit , extraire.<br/>
+Une fois le dossier téléchargé, il faut l'extraire avec clic droit , extraire.<br/>
 Pour lancer les programmes, se référer au guide d'utilisation des programmes<br/>
